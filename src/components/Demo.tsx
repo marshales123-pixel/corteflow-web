@@ -46,10 +46,10 @@ export default function Demo() {
           {/* Header de la barbería demo */}
           <div className="flex items-center justify-between px-6 pt-5 pb-3 border-b border-white/5">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-xs font-black text-white">TB</div>
+              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-xs font-black text-white">DB</div>
               <div className="text-left">
-                <p className="text-white font-bold text-sm leading-none">The Bulldog</p>
-                <p className="text-gray-600 text-xs mt-0.5">Barber Shop · Buenos Aires</p>
+                <p className="text-white font-bold text-sm leading-none">Demo Barbería</p>
+                <p className="text-gray-600 text-xs mt-0.5">Buenos Aires · CorteFlow</p>
               </div>
             </div>
             <span className="text-xs px-2 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400">En vivo</span>
