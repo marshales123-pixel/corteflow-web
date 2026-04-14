@@ -7,7 +7,7 @@ export default function Hero() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 py-6 border-b border-white/5 backdrop-blur-md bg-[#080808]/80">
         <div className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="CorteFlow" width={48} height={48} fetchPriority="high" style={{ mixBlendMode: "screen" }} />
+          <img src="/logo.png" alt="CorteFlow" width={48} height={48} fetchPriority="high" style={{ mixBlendMode: "lighten" }} />
           <span className="text-white font-bold text-2xl tracking-tight">
             Corte<span className="gradient-text">Flow</span>
           </span>

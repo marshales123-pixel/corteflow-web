@@ -41,7 +41,7 @@ export default function Contacto() {
                 width={72}
                 height={72}
                 className="relative"
-                style={{ mixBlendMode: "screen" }}
+                style={{ mixBlendMode: "lighten" }}
               />
             </div>
 
@@ -91,7 +91,7 @@ export default function Contacto() {
         <div className="h-px bg-linear-to-r from-transparent via-white/10 to-transparent mb-8" />
         <div className="flex items-center justify-center gap-2 mb-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="CorteFlow" width={22} height={22} style={{ mixBlendMode: "screen", opacity: 0.7 }} />
+          <img src="/logo.png" alt="CorteFlow" width={22} height={22} style={{ mixBlendMode: "lighten", opacity: 0.7 }} />
           <span className="text-gray-600 text-sm font-semibold">
             Corte<span className="text-orange-500">Flow</span>
           </span>
