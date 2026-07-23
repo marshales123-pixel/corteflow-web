@@ -3,10 +3,14 @@ import {
   MessageCircle,
   CalendarCheck,
   CalendarX,
+  CalendarClock,
   DollarSign,
   BarChart2,
   Building2,
   ShieldCheck,
+  Bell,
+  TrendingUp,
+  Star,
   type LucideIcon,
 } from "lucide-react";
 
@@ -22,6 +26,11 @@ const features: { icon: LucideIcon; title: string; desc: string }[] = [
     desc: "Confirmación instantánea al reservar. El cliente sabe todo sin que vos hagas nada.",
   },
   {
+    icon: Bell,
+    title: "Recordatorio el día anterior",
+    desc: "El sistema le manda un WhatsApp automático la noche antes. Menos ausentes, más plata.",
+  },
+  {
     icon: CalendarCheck,
     title: "Agenda digital en tiempo real",
     desc: "Cada barbero ve su agenda actualizada al instante. Sin papel, sin confusiones.",
@@ -30,6 +39,11 @@ const features: { icon: LucideIcon; title: string; desc: string }[] = [
     icon: CalendarX,
     title: "El cliente cancela solo",
     desc: "Cancela desde el link del turno sin llamarte ni mandarte mensajes. Vos te enterás al toque.",
+  },
+  {
+    icon: CalendarClock,
+    title: "El cliente reagenda solo",
+    desc: "Si se le complica el día, cambia turno y hora desde el mismo link. No cancela, no te escribe, y vos no perdés el cliente.",
   },
   {
     icon: DollarSign,
@@ -42,14 +56,24 @@ const features: { icon: LucideIcon; title: string; desc: string }[] = [
     desc: "Ves qué servicios generan más, cuáles días son más movidos y cuánto entraste.",
   },
   {
+    icon: TrendingUp,
+    title: "Google Analytics incluido",
+    desc: "Ves cuánta gente visita tu web, desde dónde llegan y qué páginas miran. Todo gratis.",
+  },
+  {
     icon: Building2,
     title: "Multi-sucursal",
     desc: "Manejá varias sedes desde un solo lugar. Los datos de cada una van por separado.",
   },
   {
     icon: ShieldCheck,
-    title: "Las sedes no se mezclan",
-    desc: "Cada sucursal ve solo lo suyo. Clientes, barberos e ingresos separados por sede.",
+    title: "Aparecés en Google",
+    desc: "Landing con SEO, Search Console y una página por sucursal para rankear en tu barrio. Tus clientes te encuentran solos.",
+  },
+  {
+    icon: Star,
+    title: "Reseñas de Google automáticas",
+    desc: "Después del corte, el sistema le pide por WhatsApp que te deje una reseña con el link directo a tu sucursal. Más estrellas, más clientes nuevos.",
   },
 ];
 
@@ -57,18 +81,18 @@ export default function Features() {
   return (
     <section className="relative py-28 px-6">
       {/* Separador superior */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
 
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-orange-400 mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-flama mb-3">
             Funcionalidades
           </p>
-          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-black text-filo leading-tight">
             Todo lo que tu barbería necesita
           </h2>
-          <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">
+          <p className="mt-4 text-humo text-lg max-w-xl mx-auto">
             Un sistema completo, pensado para el día a día de una barbería real.
           </p>
         </div>
@@ -78,20 +102,20 @@ export default function Features() {
           {features.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="group rounded-2xl border border-white/8 bg-white/3 p-6 flex flex-col gap-3 hover:border-orange-500/30 hover:bg-white/5 transition-all duration-300"
+              className="group rounded-2xl border border-borde bg-grafito p-6 flex flex-col gap-3 hover:border-flama/30 hover:bg-grafito-2 transition-all duration-300"
             >
               <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center shrink-0">
-                <Icon className="w-5 h-5 text-white" aria-hidden="true" />
+                <Icon className="w-5 h-5 text-filo" aria-hidden="true" />
               </div>
-              <h3 className="text-white font-bold text-base leading-snug">{title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+              <h3 className="text-filo font-bold text-base leading-snug">{title}</h3>
+              <p className="text-humo-2 text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Separador inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
     </section>
   );
 }

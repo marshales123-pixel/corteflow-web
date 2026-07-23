@@ -3,15 +3,17 @@ import { WHATSAPP_URL } from "@/lib/constants";
 const planes = [
   {
     nombre: "Básico",
-    setup: "USD 80",
-    mensual: "USD 50/mes",
+    setup: "USD 100",
+    mensual: "USD 40/mes",
     desc: "Ideal para empezar. Una sede, reservas online y agenda digital.",
     features: [
       "1 sede",
       "Reservas online 24/7",
       "Agenda digital por barbero",
-      "WhatsApp automático",
+      "WhatsApp automático al reservar",
       "El cliente cancela solo",
+      "Landing page con SEO",
+      "Google Analytics incluido",
     ],
     destacado: false,
     cta: "Empezar con Básico",
@@ -19,29 +21,31 @@ const planes = [
   {
     nombre: "Profesional",
     setup: "USD 150",
-    mensual: "USD 80/mes",
-    desc: "El más elegido. Todo lo del Básico más sueldos y estadísticas.",
+    mensual: "USD 60/mes",
+    desc: "El más elegido. Todo lo del Básico más sueldos, marketing y estadísticas.",
     features: [
       "1 sede",
       "Todo el plan Básico",
       "Cálculo automático de sueldos",
+      "Marketing por WhatsApp",
       "Estadísticas de ingresos",
-      "Soporte prioritario",
+      "Programa de fidelización",
+      "Galería de fotos",
     ],
     destacado: true,
     cta: "Empezar con Profesional",
   },
   {
     nombre: "Multi-Sucursal",
-    setup: "USD 300",
-    mensual: "USD 100/mes",
+    setup: "USD 200",
+    mensual: "USD 40/mes × sede",
     desc: "Para barberías con varias sedes. Gestión centralizada con datos aislados.",
     features: [
-      "Múltiples sedes",
+      "Sedes ilimitadas",
       "Todo el plan Profesional",
       "Las sedes no se mezclan",
-      "Panel por sucursal",
-      "Soporte dedicado",
+      "Panel super admin global",
+      "Reportes por sucursal",
     ],
     destacado: false,
     cta: "Empezar con Multi-Sucursal",
@@ -65,13 +69,13 @@ export default function Planes() {
       <div className="relative max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-orange-400 mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-flama mb-3">
             Planes y precios
           </p>
-          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-black text-filo leading-tight">
             Elegí el que va con tu barbería
           </h2>
-          <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">
+          <p className="mt-4 text-humo text-lg max-w-xl mx-auto">
             Precio único de setup + mensualidad baja. Sin contratos, sin sorpresas.
           </p>
         </div>
@@ -83,38 +87,38 @@ export default function Planes() {
               key={plan.nombre}
               className={`relative rounded-2xl flex flex-col p-7 transition-all duration-300 ${
                 plan.destacado
-                  ? "border-2 border-orange-500/60 bg-white/5 glow sm:scale-105 sm:-mx-1"
-                  : "border border-white/10 bg-white/3 hover:border-white/20"
+                  ? "border-2 border-flama/60 bg-grafito-2 glow sm:scale-105 sm:-mx-1"
+                  : "border border-borde-2 bg-grafito hover:border-borde-2"
               }`}
             >
               {/* Badge popular */}
               {plan.destacado && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                  <span className="px-4 py-1 rounded-full gradient-bg text-white text-xs font-bold tracking-wide shadow-lg">
+                  <span className="px-4 py-1 rounded-full gradient-bg text-filo text-xs font-bold tracking-wide shadow-lg">
                     RECOMENDADO
                   </span>
                 </div>
               )}
 
               <div className="mb-6">
-                <h3 className="text-white font-black text-xl mb-1">{plan.nombre}</h3>
-                <p className="text-gray-500 text-sm">{plan.desc}</p>
+                <h3 className="text-filo font-black text-xl mb-1">{plan.nombre}</h3>
+                <p className="text-humo-2 text-sm">{plan.desc}</p>
               </div>
 
               {/* Precio */}
               <div className="mb-6">
-                <div className="text-gray-400 text-sm mb-1">Setup único</div>
-                <div className="text-white font-bold text-2xl">{plan.setup}</div>
-                <p className="text-gray-600 text-xs mt-0.5">Configuración completa a cargo de CorteFlow</p>
-                <div className="mt-3 text-gray-400 text-sm mb-1">Mensual</div>
+                <div className="text-humo text-sm mb-1">Setup único</div>
+                <div className="text-filo font-bold text-2xl">{plan.setup}</div>
+                <p className="text-humo-2 text-xs mt-0.5">Configuración completa a cargo de CorteFlow</p>
+                <div className="mt-3 text-humo text-sm mb-1">Mensual</div>
                 <div className="gradient-text font-black text-3xl">{plan.mensual}</div>
-                <p className="text-gray-600 text-xs mt-0.5">Con 3 turnos extra por semana se paga solo</p>
+                <p className="text-humo-2 text-xs mt-0.5">Con 3 turnos extra por semana se paga solo</p>
               </div>
 
               {/* Features */}
               <ul className="flex flex-col gap-2.5 mb-8 flex-1">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-gray-300">
+                  <li key={f} className="flex items-center gap-2 text-sm text-humo">
                     <span className="gradient-text font-bold">✓</span>
                     {f}
                   </li>
@@ -127,8 +131,8 @@ export default function Planes() {
                 rel="noopener noreferrer"
                 className={`w-full text-center py-3.5 rounded-xl font-bold text-sm transition-all ${
                   plan.destacado
-                    ? "gradient-bg text-white glow hover:opacity-90"
-                    : "border border-white/15 text-white hover:bg-white/8 hover:border-white/25"
+                    ? "gradient-bg text-filo glow hover:opacity-90"
+                    : "border border-borde-2 text-filo hover:bg-grafito-2 hover:border-borde-2"
                 }`}
               >
                 {plan.cta}
@@ -137,13 +141,13 @@ export default function Planes() {
           ))}
         </div>
 
-        <p className="text-center text-gray-600 text-sm mt-8">
+        <p className="text-center text-humo-2 text-sm mt-8">
           ¿Tenés dudas? Escribinos por WhatsApp y te armamos una propuesta a medida.
         </p>
       </div>
 
       {/* Separador inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
     </section>
   );
 }

@@ -1,14 +1,14 @@
 import { WHATSAPP_URL, DEMO_URL } from "@/lib/constants";
+import Logo from "@/components/Logo";
 
 export default function Hero() {
   return (
     <>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 py-6 border-b border-white/5 backdrop-blur-md bg-[#080808]/80">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 py-6 border-b border-borde backdrop-blur-md bg-[var(--navaja)]/80">
         <div className="flex items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="CorteFlow" width={48} height={48} fetchPriority="high" style={{ mixBlendMode: "lighten" }} />
-          <span className="text-white font-bold text-2xl tracking-tight">
+          <Logo size={48} />
+          <span className="text-filo font-bold text-2xl tracking-tight">
             Corte<span className="gradient-text">Flow</span>
           </span>
         </div>
@@ -19,7 +19,7 @@ export default function Hero() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Quiero una demo de CorteFlow por WhatsApp"
-          className="inline-flex sm:hidden items-center justify-center w-10 h-10 rounded-xl gradient-bg text-white glow"
+          className="inline-flex sm:hidden items-center justify-center w-10 h-10 rounded-xl gradient-bg text-filo glow"
         >
           <WhatsAppIcon size={18} />
         </a>
@@ -29,7 +29,7 @@ export default function Hero() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl gradient-bg text-white glow transition-opacity hover:opacity-90"
+          className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl gradient-bg text-filo glow transition-opacity hover:opacity-90"
         >
           <WhatsAppIcon size={16} />
           Quiero una demo
@@ -49,44 +49,44 @@ export default function Hero() {
 
         <div className="relative z-10 text-center max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs sm:text-sm text-gray-400">
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-borde-2 bg-grafito text-xs sm:text-sm text-humo">
             <span className="w-2 h-2 rounded-full gradient-bg animate-pulse shrink-0" />
             <span>Sistema de gestión para barberías<span className="hidden sm:inline"> · Buenos Aires</span></span>
           </div>
 
           {/* Compatibilidad */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-6 text-xs text-gray-400">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-6 text-xs text-humo">
             <span className="flex items-center gap-1">
               <AppleIcon size={13} />
               iPhone
             </span>
-            <span className="text-white/10">·</span>
+            <span className="text-borde-2">·</span>
             <span className="flex items-center gap-1">
               <AndroidIcon size={13} />
               Android
             </span>
-            <span className="text-white/10">·</span>
+            <span className="text-borde-2">·</span>
             <span className="flex items-center gap-1">
               <DesktopIcon size={13} />
               PC / Mac
             </span>
-            <span className="text-white/10">·</span>
+            <span className="text-borde-2">·</span>
             <span>Sin instalar nada</span>
-            <span className="text-white/10">·</span>
-            <span className="text-orange-400 font-semibold">Sin contrato</span>
+            <span className="text-borde-2">·</span>
+            <span className="text-flama font-semibold">Sin contrato</span>
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6">
-            <span className="text-white">Tus clientes reservan solos.</span>
+            <span className="text-filo">Tus clientes reservan solos.</span>
             <br />
-            <span className="gradient-text" style={{ textShadow: "0 0 40px rgba(239,68,68,0.4)" }}>
+            <span className="gradient-text" style={{ textShadow: "0 0 40px var(--glow)" }}>
               Vos te enfocás en cortar.
             </span>
           </h1>
 
           {/* Subtítulo */}
-          <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-humo text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
             Sin papel. Sin WhatsApp caótico. Sin excusas.{" "}
             <br className="hidden sm:block" />
             CorteFlow pone tu barbería en piloto automático.
@@ -98,7 +98,7 @@ export default function Hero() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl gradient-bg text-white font-bold text-lg glow transition-transform hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl gradient-bg text-filo font-bold text-lg glow transition-transform hover:scale-105 active:scale-95"
             >
               <WhatsAppIcon size={20} />
               Quiero una demo
@@ -107,7 +107,7 @@ export default function Hero() {
               href={DEMO_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-white/20 bg-white/5 text-white font-semibold text-lg transition-all hover:bg-white/10 hover:border-white/30"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-borde-2 bg-grafito text-filo font-semibold text-lg transition-all hover:bg-grafito-2 hover:border-borde-2"
             >
               Ver demo en vivo →
             </a>
@@ -122,14 +122,14 @@ export default function Hero() {
             ].map(({ value, label }) => (
               <div key={label}>
                 <div className="text-xl sm:text-2xl font-black gradient-text">{value}</div>
-                <div className="text-xs sm:text-sm text-gray-500 mt-0.5">{label}</div>
+                <div className="text-xs sm:text-sm text-humo-2 mt-0.5">{label}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Línea decorativa inferior */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
       </section>
     </>
   );

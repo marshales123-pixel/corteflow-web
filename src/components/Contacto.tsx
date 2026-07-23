@@ -1,4 +1,5 @@
 import { WHATSAPP_URL, INSTAGRAM_URL } from "@/lib/constants";
+import Logo from "@/components/Logo";
 
 export default function Contacto() {
   return (
@@ -14,19 +15,19 @@ export default function Contacto() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <div className="mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-orange-400 mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-flama mb-3">
             Contacto
           </p>
-          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-black text-filo leading-tight">
             ¿Listo para arrancar?
           </h2>
-          <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">
+          <p className="mt-4 text-humo text-lg max-w-xl mx-auto">
             Hablá directo con Gonzalo, el desarrollador. Te responde rápido y te arma una propuesta a medida para tu barbería.
           </p>
         </div>
 
         {/* Card de contacto */}
-        <div className="rounded-2xl border border-white/10 bg-white/3 p-8 sm:p-10 mb-8">
+        <div className="rounded-2xl border border-borde-2 bg-grafito p-8 sm:p-10 mb-8">
           <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 justify-center">
             {/* Logo */}
             <div className="relative shrink-0">
@@ -34,27 +35,21 @@ export default function Contacto() {
                 className="absolute inset-0 rounded-2xl blur-xl opacity-50"
                 style={{ background: "linear-gradient(135deg, #EF4444, #F97316)" }}
               />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logo.png"
-                alt="CorteFlow"
-                width={72}
-                height={72}
-                className="relative"
-                style={{ mixBlendMode: "lighten" }}
-              />
+              <div className="relative">
+                <Logo size={72} />
+              </div>
             </div>
 
             {/* Info */}
             <div className="text-left">
-              <h3 className="text-white font-black text-xl">Gonzalo Guarnieri</h3>
-              <p className="text-gray-500 text-sm mt-1">Fundador · CorteFlow · Olivos, Buenos Aires</p>
+              <h3 className="text-filo font-black text-xl">Gonzalo Guarnieri</h3>
+              <p className="text-humo-2 text-sm mt-1">Fundador · CorteFlow · Olivos, Buenos Aires</p>
               <div className="flex flex-col sm:flex-row gap-2 mt-4">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl gradient-bg text-white font-bold text-sm glow hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl gradient-bg text-filo font-bold text-sm glow hover:opacity-90 transition-opacity"
                 >
                   <WhatsAppIcon />
                   +54 11 6733-0060
@@ -64,7 +59,7 @@ export default function Contacto() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Seguinos en Instagram @corteflow.ar"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/15 bg-white/5 text-white font-semibold text-sm hover:bg-white/10 transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-borde-2 bg-grafito-2 text-filo font-semibold text-sm hover:bg-grafito-2/70 transition-colors"
                 >
                   <InstagramIcon />
                   @corteflow.ar
@@ -79,7 +74,7 @@ export default function Contacto() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-10 py-4 rounded-xl gradient-bg text-white font-bold text-lg glow transition-transform hover:scale-105 active:scale-95"
+          className="inline-flex items-center gap-3 px-10 py-4 rounded-xl gradient-bg text-filo font-bold text-lg glow transition-transform hover:scale-105 active:scale-95"
         >
           <WhatsAppIcon size={22} />
           Quiero una demo gratis
@@ -88,15 +83,16 @@ export default function Contacto() {
 
       {/* Footer mínimo */}
       <div className="relative mt-20 text-center">
-        <div className="h-px bg-linear-to-r from-transparent via-white/10 to-transparent mb-8" />
+        <div className="h-px bg-linear-to-r from-transparent via-borde-2 to-transparent mb-8" />
         <div className="flex items-center justify-center gap-2 mb-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="CorteFlow" width={22} height={22} style={{ mixBlendMode: "lighten", opacity: 0.7 }} />
-          <span className="text-gray-600 text-sm font-semibold">
-            Corte<span className="text-orange-500">Flow</span>
+          <div style={{ opacity: 0.7 }}>
+            <Logo size={22} />
+          </div>
+          <span className="text-humo-2 text-sm font-semibold">
+            Corte<span className="text-flama">Flow</span>
           </span>
         </div>
-        <p className="text-gray-700 text-xs">
+        <p className="text-humo-2 text-xs">
           © {new Date().getFullYear()} CorteFlow · Sistema de gestión para barberías · Buenos Aires, Argentina
         </p>
       </div>

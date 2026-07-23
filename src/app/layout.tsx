@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Sora, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
+  weight: ["700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["500"],
 });
 
 const siteUrl = "https://corteflow.com";
@@ -81,9 +89,9 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${inter.variable} ${geistMono.variable} antialiased`}
+      className={`${sora.variable} ${dmSans.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="min-h-screen bg-[#080808] text-white">{children}</body>
+      <body className="min-h-screen bg-[var(--navaja)] text-[var(--filo)]">{children}</body>
     </html>
   );
 }

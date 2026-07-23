@@ -27,7 +27,7 @@ export default function Image() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(239,68,68,0.18) 0%, transparent 70%)",
+              "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(244,92,36,0.28) 0%, transparent 70%)",
           }}
         />
 
@@ -37,8 +37,8 @@ export default function Image() {
             display: "flex",
             alignItems: "center",
             gap: 8,
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.1)",
+            background: "#141009",
+            border: "1px solid rgba(255,244,232,0.16)",
             borderRadius: 999,
             padding: "8px 20px",
             marginBottom: 28,
@@ -52,7 +52,7 @@ export default function Image() {
               background: "linear-gradient(135deg, #EF4444, #F97316)",
             }}
           />
-          <span style={{ color: "#9CA3AF", fontSize: 18 }}>
+          <span style={{ color: "#A79F97", fontSize: 18 }}>
             Sistema de gestión para barberías · Buenos Aires
           </span>
         </div>
@@ -62,7 +62,7 @@ export default function Image() {
           style={{
             fontSize: 72,
             fontWeight: 900,
-            color: "white",
+            color: "#F7F3EE",
             textAlign: "center",
             lineHeight: 1.1,
             marginBottom: 8,
@@ -86,7 +86,7 @@ export default function Image() {
         <div
           style={{
             fontSize: 28,
-            color: "#9CA3AF",
+            color: "#A79F97",
             marginTop: 16,
             textAlign: "center",
             maxWidth: 700,
@@ -103,16 +103,16 @@ export default function Image() {
             marginTop: 48,
           }}
         >
-          {["Básico USD 80 + 50/mes", "Profesional USD 150 + 80/mes", "Multi USD 300 + 100/mes"].map(
+          {["Básico USD 100 + 40/mes", "Profesional USD 150 + 60/mes", "Multi USD 200 + 40/mes × sede"].map(
             (p) => (
               <div
                 key={p}
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "#141009",
+                  border: "1px solid rgba(255,244,232,0.16)",
                   borderRadius: 12,
                   padding: "10px 20px",
-                  color: "#D1D5DB",
+                  color: "#F7F3EE",
                   fontSize: 16,
                 }}
               >

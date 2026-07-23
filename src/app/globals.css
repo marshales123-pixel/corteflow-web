@@ -1,10 +1,28 @@
 @import "tailwindcss";
 
 :root {
+  /* Base */
   --background: #080808;
-  --foreground: #ffffff;
-  --brand-red: #EF4444;
-  --brand-orange: #F97316;
+  --foreground: #f7f3ee;
+
+  /* Brand Book CorteFlow v1.0 */
+  --navaja: #080808;      /* fondo principal */
+  --grafito: #141009;     /* superficies/tarjetas */
+  --grafito-2: #1d1610;   /* variante de grafito, gradientes de tarjetas */
+  --borde: rgba(255, 244, 232, 0.09);   /* borde sutil */
+  --borde-2: rgba(255, 244, 232, 0.16); /* borde marcado */
+  --filo: #f7f3ee;        /* texto principal (blanco cálido) */
+  --humo: #a79f97;        /* texto secundario */
+  --humo-2: #6f6862;      /* texto terciario/apagado */
+  --ign-1: #ef4444;       /* inicio gradiente */
+  --ign-2: #f97316;       /* fin gradiente */
+  --flama: #f45c24;       /* naranja plano sólido — íconos, bordes, highlights, botones */
+  --glow: rgba(244, 92, 36, 0.55); /* resplandor cálido */
+  --ok: #34d399;          /* semántico, éxito/confirmado */
+
+  /* Aliases retrocompatibles */
+  --brand-red: var(--ign-1);
+  --brand-orange: var(--ign-2);
 }
 
 @theme inline {
@@ -12,29 +30,57 @@
   --color-foreground: var(--foreground);
   --color-brand-red: var(--brand-red);
   --color-brand-orange: var(--brand-orange);
+
+  --color-navaja: var(--navaja);
+  --color-grafito: var(--grafito);
+  --color-grafito-2: var(--grafito-2);
+  --color-borde: var(--borde);
+  --color-borde-2: var(--borde-2);
+  --color-filo: var(--filo);
+  --color-humo: var(--humo);
+  --color-humo-2: var(--humo-2);
+  --color-ign-1: var(--ign-1);
+  --color-ign-2: var(--ign-2);
+  --color-flama: var(--flama);
+  --color-glow: var(--glow);
+  --color-ok: var(--ok);
+
+  /* Tipografía */
+  --font-sans: var(--font-dm-sans);
+  --font-heading: var(--font-sora);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), Inter, sans-serif;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sora), var(--font-dm-sans), sans-serif;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #EF4444, #F97316);
+  background: linear-gradient(135deg, var(--ign-1), var(--ign-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #EF4444, #F97316);
+  background: linear-gradient(135deg, var(--ign-1), var(--ign-2));
 }
 
 .glow {
-  box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), 0 0 60px rgba(249, 115, 22, 0.2);
+  box-shadow: 0 0 30px var(--glow), 0 0 60px rgba(244, 92, 36, 0.25);
 }
 
 .glow-text {
-  text-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+  text-shadow: 0 0 30px var(--glow);
 }

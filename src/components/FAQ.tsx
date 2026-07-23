@@ -31,15 +31,15 @@ export default function FAQ() {
   return (
     <section className="relative py-28 px-6">
       {/* Separador superior */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
 
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-orange-400 mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-flama mb-3">
             Preguntas frecuentes
           </p>
-          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
+          <h2 className="text-4xl sm:text-5xl font-black text-filo leading-tight">
             Lo que todo barbero pregunta
           </h2>
         </div>
@@ -49,15 +49,15 @@ export default function FAQ() {
           {preguntas.map(({ q, a }, i) => (
             <div
               key={i}
-              className="rounded-2xl border border-white/8 bg-white/3 overflow-hidden transition-colors hover:border-white/15"
+              className="rounded-2xl border border-borde bg-grafito overflow-hidden transition-colors hover:border-borde-2"
             >
               <button
                 onClick={() => setAbierto(abierto === i ? null : i)}
                 className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
               >
-                <span className="text-white font-semibold text-sm sm:text-base leading-snug">{q}</span>
+                <span className="text-filo font-semibold text-sm sm:text-base leading-snug">{q}</span>
                 <span
-                  className={`text-orange-400 text-xl font-bold shrink-0 transition-transform duration-200 ${
+                  className={`text-flama text-xl font-bold shrink-0 transition-transform duration-200 ${
                     abierto === i ? "rotate-45" : ""
                   }`}
                 >
@@ -67,7 +67,7 @@ export default function FAQ() {
 
               {abierto === i && (
                 <div className="px-6 pb-5">
-                  <p className="text-gray-400 text-sm leading-relaxed">{a}</p>
+                  <p className="text-humo text-sm leading-relaxed">{a}</p>
                 </div>
               )}
             </div>
@@ -76,7 +76,7 @@ export default function FAQ() {
       </div>
 
       {/* Separador inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
     </section>
   );
 }
