@@ -1,4 +1,4 @@
-import { WHATSAPP_URL, DEMO_URL } from "@/lib/constants";
+import { WHATSAPP_URL } from "@/lib/constants";
 import Logo from "@/components/Logo";
 
 export default function Hero() {
@@ -92,8 +92,8 @@ export default function Hero() {
             CorteFlow pone tu barbería en piloto automático.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* CTA */}
+          <div className="flex justify-center">
             <a
               href={WHATSAPP_URL}
               target="_blank"
@@ -102,14 +102,6 @@ export default function Hero() {
             >
               <WhatsAppIcon size={20} />
               Quiero una demo
-            </a>
-            <a
-              href={DEMO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-borde-2 bg-grafito text-filo font-semibold text-lg transition-all hover:bg-grafito-2 hover:border-borde-2"
-            >
-              Ver demo en vivo →
             </a>
           </div>
 
