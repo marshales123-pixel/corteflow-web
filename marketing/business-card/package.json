@@ -1,0 +1,17 @@
+{
+  "name": "business-card",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer-core": "^25.5.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.3"
+  }
+}
