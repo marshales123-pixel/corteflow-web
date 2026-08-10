@@ -97,3 +97,16 @@ Cercano y directo. Le habla al dueño de la barbería, no al programador.
 
 - WhatsApp: +54 11 6733-0060
 - Instagram: @corteflow.ar
+
+## Generador de carruseles de Instagram (`marketing/instagram-carousel/`)
+
+Tool interno (no forma parte de la app Next.js, no se despliega) para armar posts de
+carrusel para `@corteflow.ar` — HTML autocontenido (fuentes Sora/DM Sans/JetBrains Mono
+y el logo "Hex Flow"/Geometric C embebidos como `data:` URIs) que se exporta a PNGs de
+1080×1350 px vía Puppeteer + Chrome headless. Respeta el Brand Book v1.0 de arriba
+(mismos colores, tipografías y logo que la web — nunca dorado, fondo siempre `--navaja`).
+
+Ver `marketing/instagram-carousel/README.md` para el flujo completo (duplicar
+`template.html` → editar contenido → `node build.js` → `node export.js`). Las imágenes
+finales de cada post se guardan fuera del repo, en
+`Desktop\CorteFlow — Comercial\Instagram - Carrusel presentacion\post N\`.

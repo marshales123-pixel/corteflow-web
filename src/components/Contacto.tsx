@@ -77,7 +77,7 @@ export default function Contacto() {
           className="inline-flex items-center gap-3 px-10 py-4 rounded-xl gradient-bg text-filo font-bold text-lg glow transition-transform hover:scale-105 active:scale-95"
         >
           <WhatsAppIcon size={22} />
-          Quiero una demo gratis
+          Quiero mi setup gratis
         </a>
       </div>
 

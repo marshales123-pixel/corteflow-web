@@ -1,0 +1,14 @@
+{
+  "name": "corteflow-instagram-carousel",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Generador de carruseles de Instagram para CorteFlow, con el brand book aplicado.",
+  "scripts": {
+    "build": "node build.js",
+    "export": "node export.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.0.0",
+    "sharp": "^0.34.0"
+  }
+}

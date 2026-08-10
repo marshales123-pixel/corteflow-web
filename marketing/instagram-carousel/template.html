@@ -1,0 +1,434 @@
+<meta charset="utf-8">
+<title>CorteFlow — Carrusel de Instagram</title>
+<style>
+  @font-face{
+    font-family:'Sora';
+    src:url("data:font/woff2;base64,__SORA_B64__") format('woff2');
+    font-weight:100 900; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:'DM Sans';
+    src:url("data:font/woff2;base64,__DMSANS_B64__") format('woff2');
+    font-weight:100 900; font-style:normal; font-display:swap;
+  }
+  @font-face{
+    font-family:'JetBrains Mono';
+    src:url("data:font/woff2;base64,__JBMONO_B64__") format('woff2');
+    font-weight:100 900; font-style:normal; font-display:swap;
+  }
+
+  :root{
+    --navaja:#080808;
+    --grafito:#141009;
+    --grafito-2:#1d1610;
+    --borde: rgba(255,244,232,.09);
+    --borde-2: rgba(255,244,232,.16);
+    --filo:#f7f3ee;
+    --humo:#a79f97;
+    --humo-2:#6f6862;
+    --ign-1:#ef4444;
+    --ign-2:#f97316;
+    --flama:#f45c24;
+    --glow: rgba(244,92,36,.55);
+    --sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    --display: 'Sora', ui-sans-serif, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, "SF Mono", monospace;
+    --logo-img: url("data:image/webp;base64,__LOGO_B64__");
+    color-scheme: dark;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ overflow-x:hidden; }
+  body{
+    margin:0;
+    background:#030303;
+    color:var(--filo);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ───────── Cabecera de la página (herramienta de revisión, no una slide) ───────── */
+  .page-head{
+    max-width:620px;
+    margin:0 auto;
+    padding:56px 24px 8px;
+    text-align:center;
+  }
+  .page-head .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--flama); font-weight:600; margin:0 0 14px;
+  }
+  .page-head h1{
+    font-family:var(--display); font-weight:800; letter-spacing:-.01em;
+    font-size:clamp(22px,4.4vw,30px); line-height:1.25; margin:0 0 10px; text-wrap:balance;
+    color:var(--filo);
+  }
+  .page-head p{
+    margin:0; color:var(--humo); font-size:14.5px; line-height:1.6;
+  }
+  .page-head code{
+    font-family:var(--mono); background:var(--grafito); border:1px solid var(--borde-2);
+    padding:1px 6px; border-radius:5px; color:var(--filo); font-size:.92em;
+  }
+
+  /* ───────── Galería ───────── */
+  .deck{
+    display:flex; flex-direction:column; align-items:center;
+    gap:40px;
+    padding:40px 16px 100px;
+  }
+  .frame{
+    width:min(92vw,440px);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 40px 90px -30px rgba(0,0,0,.85), 0 0 0 1px var(--borde-2);
+  }
+  .slide{
+    container-type: inline-size;
+    aspect-ratio:1080/1350;
+    width:100%;
+    background:var(--navaja);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    opacity:0; transform:translateY(18px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .slide.in{ opacity:1; transform:none; }
+  .spec{
+    font-family:var(--mono); font-size:11px; color:var(--humo-2); letter-spacing:.08em;
+    margin-top:10px;
+  }
+
+  /* Glow — mismo dispositivo de marca que la web, usado con moderación */
+  .glow-strong::before, .glow-soft::before{
+    content:""; position:absolute; inset:-15%; pointer-events:none; z-index:0;
+  }
+  .glow-strong::before{
+    background:radial-gradient(ellipse 62% 46% at 50% 32%, var(--glow), transparent 72%);
+    opacity:.65;
+  }
+  .glow-soft::before{
+    background:radial-gradient(ellipse 50% 40% at 82% 8%, var(--glow), transparent 70%);
+    opacity:.22;
+  }
+
+  /* ───────── Escala tipográfica en cqw (1cqw = 1% del ancho de diseño, 1080px) ───────── */
+  .pad{ padding:7.4cqw 7.8cqw; position:relative; z-index:1; flex:1; display:flex; flex-direction:column; }
+  .label{
+    font-family:var(--mono); font-size:2.35cqw; letter-spacing:.2em; text-transform:uppercase;
+    display:flex; align-items:center; gap:.7em; margin:0 0 3.2cqw;
+  }
+  .label .tick{ width:1.6cqw; height:.34cqw; background:var(--flama); flex:none; }
+  .label.tick-danger .tick{ background:var(--ign-1); }
+  .label span{ color:var(--flama); font-weight:600; }
+  .label.tick-danger span{ color:#f2a2a2; }
+
+  h2.headline{
+    font-family:var(--display); font-weight:800; letter-spacing:-.02em; text-wrap:balance;
+    color:var(--filo); margin:0 0 4cqw; font-size:5.7cqw; line-height:1.08;
+  }
+  .cover h2.headline, .cta h2.headline{ font-size:8.6cqw; line-height:1.03; text-align:center; }
+
+  .grad{
+    background:linear-gradient(100deg,var(--ign-1),var(--ign-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .body-txt{
+    font-size:2.95cqw; line-height:1.55; color:var(--humo); max-width:88%;
+    margin:0;
+  }
+  .cover .body-txt, .cta .body-txt{ text-align:center; max-width:100%; margin:0 auto; }
+
+  ul.bullets{ list-style:none; margin:5cqw 0 0; padding:0; display:flex; flex-direction:column; gap:3.6cqw; }
+  ul.bullets li{
+    display:flex; align-items:flex-start; gap:2.6cqw;
+    font-size:2.9cqw; line-height:1.42; color:var(--filo);
+  }
+  ul.bullets .dot{
+    width:1.55cqw; height:1.55cqw; flex:none; margin-top:.85cqw;
+    background:var(--flama); transform:rotate(45deg);
+  }
+  ul.bullets.danger .dot{ background:var(--ign-1); }
+
+  .stat-row{
+    margin-top:auto; padding-top:5cqw;
+    font-family:var(--mono); font-size:1.85cqw; letter-spacing:.1em; color:var(--humo-2);
+    text-transform:uppercase; display:flex; flex-wrap:wrap; gap:1.2em;
+    font-variant-numeric:tabular-nums;
+  }
+  .stat-row b{ color:var(--filo); font-weight:600; }
+
+  /* ───────── Planes (slide 9) ───────── */
+  .plans{ margin-top:4.6cqw; display:flex; flex-direction:column; gap:2.6cqw; }
+  .plan{
+    border:1px solid var(--borde-2); background:var(--grafito); border-radius:1.3cqw;
+    padding:3.4cqw 3.8cqw; display:flex; align-items:center; justify-content:space-between; gap:3cqw;
+  }
+  .plan.destacado{ border-color:color-mix(in srgb, var(--flama) 55%, var(--borde-2)); background:var(--grafito-2); }
+  .plan .nm{ font-family:var(--display); font-weight:700; font-size:2.75cqw; color:var(--filo); display:flex; align-items:center; gap:.7em;}
+  .plan .nm small{
+    font-family:var(--mono); font-size:.46em; letter-spacing:.12em; color:var(--flama);
+    border:1px solid color-mix(in srgb, var(--flama) 45%, transparent); border-radius:999px; padding:.35em .8em;
+    font-weight:600;
+  }
+  .plan .pr{ text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; }
+  .plan .pr .setup{ font-size:1.85cqw; color:var(--humo-2); }
+  .plan .pr .mensual{ font-size:2.85cqw; font-weight:600; }
+  .plan .pr .mensual.grad-num{ background:linear-gradient(100deg,var(--ign-1),var(--ign-2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+  /* ───────── Chrome inferior — presente en las 10 slides ───────── */
+  .chrome-bottom{
+    position:relative; z-index:1;
+    margin-top:auto;
+    padding:0 7.8cqw 5.6cqw;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brandlock{ display:flex; align-items:center; gap:1.6cqw; }
+  .brandlock .mark{
+    width:3.3cqw; aspect-ratio:405/460;
+    background-image:var(--logo-img); background-size:contain; background-repeat:no-repeat; background-position:center;
+  }
+  .brandlock .word{ font-family:var(--display); font-weight:700; font-size:2.5cqw; color:var(--filo); }
+  .brandlock .word em{ font-style:normal; color:var(--flama); }
+  .counter{
+    font-family:var(--mono); font-size:2.1cqw; color:var(--humo-2); letter-spacing:.06em;
+    font-variant-numeric:tabular-nums;
+  }
+  .counter b{ color:var(--filo); }
+
+  /* ───────── Cover / CTA — lockup grande ───────── */
+  .cover .pad, .cta .pad{ align-items:center; justify-content:center; text-align:center; gap:0; }
+  .cover .mark-big, .cta .mark-big{
+    width:15cqw; aspect-ratio:405/460;
+    background-image:var(--logo-img); background-size:contain; background-repeat:no-repeat; background-position:center;
+    margin-bottom:6cqw;
+  }
+  .tagline{
+    font-family:var(--mono); font-size:2cqw; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--humo); margin:3.4cqw 0 0;
+  }
+  .swipe-cue{
+    margin-top:6cqw; font-family:var(--mono); font-size:2cqw; letter-spacing:.08em; color:var(--humo-2);
+  }
+  .cta-pills{ margin-top:6cqw; display:flex; flex-direction:column; gap:2cqw; align-items:center; }
+  .cta-pill{
+    font-family:var(--mono); font-size:2.5cqw; letter-spacing:.03em;
+    border:1px solid var(--borde-2); border-radius:999px; padding:2cqw 4.6cqw;
+    color:var(--filo); display:flex; align-items:center; gap:1em;
+  }
+  .cta-pill.solid{ background:linear-gradient(135deg,var(--ign-1),var(--ign-2)); border-color:transparent; color:var(--filo); font-weight:600; }
+
+  @media (prefers-reduced-motion: reduce){
+    .slide{ transition:none; opacity:1; transform:none; }
+  }
+
+  /* ───────── Modo exportación — una sola slide a 1080×1350 exactos, sin cromo de galería ───────── */
+  body.export-mode{ background:var(--navaja); }
+  body.export-mode .page-head{ display:none; }
+  body.export-mode .deck{ padding:0; gap:0; align-items:flex-start; }
+  body.export-mode .frame{ width:1080px; border-radius:0; box-shadow:none; }
+  body.export-mode .slide{ opacity:1 !important; transform:none !important; transition:none !important; }
+</style>
+
+<header class="page-head">
+  <p class="eyebrow">Contenido para Instagram · @corteflow.ar</p>
+  <h1>Carrusel — presentación completa de CorteFlow</h1>
+  <p>10 slides en orden, formato <code>1080 × 1350 px</code> (4:5) cada una — el tamaño que Instagram recomienda para carrusel. Guardá cada slide en secuencia (clic derecho → Guardar imagen, o pedime los PNG exportados) y subilas en este mismo orden.</p>
+</header>
+
+<main class="deck">
+
+  <!-- 01 — Portada -->
+  <div class="frame"><div class="slide cover glow-strong" data-slide>
+    <div class="pad">
+      <div class="mark-big" role="img" aria-label="Logo CorteFlow"></div>
+      <h2 class="headline">Gestioná menos.<br><span class="grad">Cortá más.</span></h2>
+      <p class="tagline">Sistema de gestión para barberías</p>
+      <p class="body-txt" style="margin-top:3.4cqw">El sistema que le devolvió el orden a barberías reales en Buenos Aires — reservas, agenda, sueldos y marketing, todo en un solo lugar.</p>
+      <p class="swipe-cue">Deslizá para conocer todo →</p>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>01</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 02 — El problema -->
+  <div class="frame"><div class="slide glow-soft" data-slide>
+    <div class="pad">
+      <p class="label tick-danger"><span class="tick"></span><span>El problema</span></p>
+      <h2 class="headline">Tu barbería no debería depender de un anotador.</h2>
+      <ul class="bullets danger">
+        <li><span class="dot"></span>Turnos que se pisan y clientes que no avisan que no vienen</li>
+        <li><span class="dot"></span>Sueldos que se calculan a mano, mes a mes</li>
+        <li><span class="dot"></span>Nadie te encuentra al buscar "barbería" en Google</li>
+        <li><span class="dot"></span>Vos contestando WhatsApp en vez de estar cortando</li>
+      </ul>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>02</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 03 — La solución -->
+  <div class="frame"><div class="slide glow-strong" data-slide>
+    <div class="pad">
+      <p class="label"><span class="tick"></span><span>La solución</span></p>
+      <h2 class="headline">Un sistema pensado para cómo funciona una barbería, de verdad.</h2>
+      <p class="body-txt">CorteFlow reemplaza el papel, el anotador y el WhatsApp caótico por una plataforma donde tus clientes reservan solos y vos ves todo ordenado, en tiempo real.</p>
+      <p class="stat-row"><b>48 hs</b>&nbsp;de implementación &nbsp;·&nbsp; <b>Cero</b>&nbsp;papel &nbsp;·&nbsp; <b>Sin</b>&nbsp;contrato</p>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>03</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 04 — Reservas online -->
+  <div class="frame"><div class="slide glow-soft" data-slide>
+    <div class="pad">
+      <p class="label"><span class="tick"></span><span>Para tus clientes</span></p>
+      <h2 class="headline">Reservan solos, a cualquier hora.</h2>
+      <ul class="bullets">
+        <li><span class="dot"></span>Eligen sucursal, servicio, barbero y horario</li>
+        <li><span class="dot"></span>Confirmación automática por WhatsApp al instante</li>
+        <li><span class="dot"></span>Cancelan o reagendan sin llamarte</li>
+      </ul>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>04</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 05 — WhatsApp automático -->
+  <div class="frame"><div class="slide glow-soft" data-slide>
+    <div class="pad">
+      <p class="label"><span class="tick"></span><span>Comunicación</span></p>
+      <h2 class="headline">El WhatsApp deja de ser tu segundo trabajo.</h2>
+      <ul class="bullets">
+        <li><span class="dot"></span>Confirmación al instante, apenas reservan</li>
+        <li><span class="dot"></span>Recordatorio automático la noche anterior</li>
+        <li><span class="dot"></span>El cliente cancela o reagenda solo, desde el link</li>
+      </ul>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>05</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 06 — Para el dueño -->
+  <div class="frame"><div class="slide glow-soft" data-slide>
+    <div class="pad">
+      <p class="label"><span class="tick"></span><span>Para vos</span></p>
+      <h2 class="headline">Vos ves todo. El sistema calcula todo.</h2>
+      <ul class="bullets">
+        <li><span class="dot"></span>Agenda en tiempo real, por barbero y sucursal</li>
+        <li><span class="dot"></span>Sueldos por comisión, calculados automáticos</li>
+        <li><span class="dot"></span>Estadísticas de ingresos y servicios más vendidos</li>
+      </ul>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>06</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 07 — Crecimiento -->
+  <div class="frame"><div class="slide glow-soft" data-slide>
+    <div class="pad">
+      <p class="label"><span class="tick"></span><span>Crecimiento</span></p>
+      <h2 class="headline">Tu barbería también trabaja cuando está cerrada.</h2>
+      <ul class="bullets">
+        <li><span class="dot"></span>Campañas de WhatsApp segmentadas por cliente</li>
+        <li><span class="dot"></span>Pedido automático de reseñas de Google</li>
+        <li><span class="dot"></span>Landing con SEO — aparecés cuando te buscan</li>
+      </ul>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>07</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 08 — Infraestructura -->
+  <div class="frame"><div class="slide glow-soft" data-slide>
+    <div class="pad">
+      <p class="label"><span class="tick"></span><span>Infraestructura</span></p>
+      <h2 class="headline">Una sede o diez. Vos decidís cómo crecer.</h2>
+      <ul class="bullets">
+        <li><span class="dot"></span>Multi-sucursal con los datos de cada una aislados</li>
+        <li><span class="dot"></span>Panel de super admin para ver todo junto</li>
+        <li><span class="dot"></span>Funciona igual en celular, tablet y computadora</li>
+      </ul>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>08</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 09 — Precios -->
+  <div class="frame"><div class="slide glow-soft" data-slide>
+    <div class="pad">
+      <p class="label"><span class="tick"></span><span>Planes</span></p>
+      <h2 class="headline">Precio fijo. Sin sorpresas, sin contrato.</h2>
+      <div class="plans">
+        <div class="plan">
+          <div class="nm">Básico</div>
+          <div class="pr"><div class="setup">Setup USD 100</div><div class="mensual">USD 40/mes</div></div>
+        </div>
+        <div class="plan destacado">
+          <div class="nm">Profesional<small>Recomendado</small></div>
+          <div class="pr"><div class="setup">Setup USD 150</div><div class="mensual grad-num">USD 60/mes</div></div>
+        </div>
+        <div class="plan">
+          <div class="nm">Multi-Sucursal</div>
+          <div class="pr"><div class="setup">Setup USD 200</div><div class="mensual">USD 40/mes × sede</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>09</b>/10</div>
+    </div>
+  </div></div>
+
+  <!-- 10 — CTA -->
+  <div class="frame"><div class="slide cta glow-strong" data-slide>
+    <div class="pad">
+      <div class="mark-big" role="img" aria-label="Logo CorteFlow"></div>
+      <h2 class="headline">Gestioná menos.<br><span class="grad">Cortá más.</span></h2>
+      <p class="body-txt" style="margin-top:3.4cqw">Escribime y armamos tu barbería en 48 horas.</p>
+      <div class="cta-pills">
+        <div class="cta-pill solid">+54 11 6733-0060</div>
+        <div class="cta-pill">@corteflow.ar</div>
+      </div>
+    </div>
+    <div class="chrome-bottom">
+      <div class="brandlock"><span class="mark"></span><span class="word">Corte<em>Flow</em></span></div>
+      <div class="counter"><b>10</b>/10</div>
+    </div>
+  </div></div>
+
+</main>
+
+<script>
+  var exportIdx = new URLSearchParams(location.search).get('export');
+  if (exportIdx) {
+    document.body.classList.add('export-mode');
+    document.querySelectorAll('.deck > .frame').forEach(function(f, i){
+      if (i + 1 !== Number(exportIdx)) f.remove();
+    });
+  } else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('[data-slide]').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('[data-slide]').forEach(function(el){ el.classList.add('in'); });
+  }
+</script>

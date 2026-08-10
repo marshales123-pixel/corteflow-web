@@ -1,5 +1,9 @@
 import { WHATSAPP_URL } from "@/lib/constants";
 
+// Promo de lanzamiento: setup gratis por tiempo limitado / primeros clientes.
+// Para volver al precio de lista, poner en false — no borra los precios reales.
+const SETUP_GRATIS = true;
+
 const planes = [
   {
     nombre: "Básico",
@@ -76,8 +80,16 @@ export default function Planes() {
             Elegí el que va con tu barbería
           </h2>
           <p className="mt-4 text-humo text-lg max-w-xl mx-auto">
-            Precio único de setup + mensualidad baja. Sin contratos, sin sorpresas.
+            {SETUP_GRATIS
+              ? "Mensualidad baja y, por tiempo limitado, arrancás sin pagar el setup. Sin contratos, sin sorpresas."
+              : "Precio único de setup + mensualidad baja. Sin contratos, sin sorpresas."}
           </p>
+          {SETUP_GRATIS && (
+            <div className="inline-flex items-center gap-2 mt-5 px-4 py-1.5 rounded-full bg-ok/10 border border-ok/30 text-ok text-xs font-bold tracking-wide">
+              <span className="w-1.5 h-1.5 rounded-full bg-ok" />
+              LANZAMIENTO · SETUP GRATIS POR TIEMPO LIMITADO
+            </div>
+          )}
         </div>
 
         {/* Cards */}
@@ -108,8 +120,17 @@ export default function Planes() {
               {/* Precio */}
               <div className="mb-6">
                 <div className="text-humo text-sm mb-1">Setup único</div>
-                <div className="text-filo font-bold text-2xl">{plan.setup}</div>
-                <p className="text-humo-2 text-xs mt-0.5">Configuración completa a cargo de CorteFlow</p>
+                {SETUP_GRATIS ? (
+                  <div className="flex items-center gap-2">
+                    <span className="text-humo-2 text-lg line-through">{plan.setup}</span>
+                    <span className="text-ok font-black text-2xl">GRATIS</span>
+                  </div>
+                ) : (
+                  <div className="text-filo font-bold text-2xl">{plan.setup}</div>
+                )}
+                <p className="text-humo-2 text-xs mt-0.5">
+                  {SETUP_GRATIS ? "Configuración completa incluida — promo de lanzamiento" : "Configuración completa a cargo de CorteFlow"}
+                </p>
                 <div className="mt-3 text-humo text-sm mb-1">Mensual</div>
                 <div className="gradient-text font-black text-3xl">{plan.mensual}</div>
                 <p className="text-humo-2 text-xs mt-0.5">Con 3 turnos extra por semana se paga solo</p>
