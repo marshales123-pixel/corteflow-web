@@ -11,6 +11,10 @@ import {
   Bell,
   TrendingUp,
   Star,
+  Megaphone,
+  Gift,
+  Wallet,
+  ClipboardCheck,
   type LucideIcon,
 } from "lucide-react";
 
@@ -48,7 +52,27 @@ const features: { icon: LucideIcon; title: string; desc: string }[] = [
   {
     icon: DollarSign,
     title: "Sueldos automáticos",
-    desc: "El sistema calcula cuánto le toca a cada barbero por sus cortes del mes.",
+    desc: "El sistema calcula cuánto le toca a cada barbero por sus cortes del mes, con bonos incluidos.",
+  },
+  {
+    icon: Wallet,
+    title: "Ingresos, gastos y rentabilidad",
+    desc: "Cargá gastos y adelantos y sabé al toque si el mes te da ganancia real, sin Excel.",
+  },
+  {
+    icon: Megaphone,
+    title: "Marketing por WhatsApp",
+    desc: "Campañas automáticas a clientes inactivos, cumpleaños o a un corte del gratis. Un clic y se manda solo.",
+  },
+  {
+    icon: Gift,
+    title: "Programa de fidelización",
+    desc: "Cada 10 cortes, el siguiente es gratis — automático, sin anotar nada en ningún lado.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Auditoría automática",
+    desc: "El sistema marca solo los cortes raros — sin barbero, sin cobrar, sin registrar — para que nada se te escape.",
   },
   {
     icon: BarChart2,
