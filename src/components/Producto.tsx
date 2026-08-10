@@ -21,7 +21,7 @@ export default function Producto() {
             Así lo ve tu cliente
           </h2>
           <p className="mt-4 text-humo text-lg max-w-xl mx-auto">
-            Capturas reales de una barbería funcionando con CorteFlow. Nada de maquetas.
+            The Bulldog Barber Shop, funcionando con CorteFlow ahora mismo. Nada de maquetas.
           </p>
         </div>
 
@@ -37,14 +37,14 @@ export default function Producto() {
               </div>
               <div className="flex-1 mx-2">
                 <div className="bg-grafito-2 rounded-md px-3 py-1 text-xs text-humo-2 text-left">
-                  tubarberia.com
+                  thebulldogbarbershop.com
                 </div>
               </div>
             </div>
             <div className="relative h-[420px]">
               <Image
-                src="/screenshots/demo-landing.jpg"
-                alt="Landing pública de una barbería con CorteFlow"
+                src="/screenshots/bulldog-landing.jpg"
+                alt="Landing pública de The Bulldog Barber Shop, hecha con CorteFlow"
                 fill
                 className="object-cover object-top"
               />
@@ -61,14 +61,14 @@ export default function Producto() {
               </div>
               <div className="flex-1 mx-2">
                 <div className="bg-grafito-2 rounded-md px-3 py-1 text-xs text-humo-2 text-left">
-                  tubarberia.com/reservar
+                  thebulldogbarbershop.com/reservar
                 </div>
               </div>
             </div>
             <div className="relative h-[420px]">
               <Image
-                src="/screenshots/demo-wizard.jpg"
-                alt="Wizard de reserva de turno online de CorteFlow"
+                src="/screenshots/bulldog-wizard.jpg"
+                alt="Wizard de reserva de turno online de The Bulldog Barber Shop"
                 fill
                 className="object-cover object-top"
               />
