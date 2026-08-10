@@ -9,9 +9,9 @@ const logoPath = path.join(dir, "..", "..", "public", "logo-mark.png");
 const inFile = "card.html";
 const outFile = "card.build.html";
 const QR_URL = "https://corteflow.com";
-const QR_SIZE = 640;
-const LOGO_PLATE = 152; // plate blanca central, px sobre el QR de 640
-const LOGO_SIZE = 110;
+const QR_SIZE = 900; // el chip en la tarjeta se ve a 260px — se genera más grande para que quede nítido
+const LOGO_PLATE = 214; // plate blanca central, px sobre el QR
+const LOGO_SIZE = 155;
 
 async function buildQr() {
   const qrBuffer = await QRCode.toBuffer(QR_URL, {
