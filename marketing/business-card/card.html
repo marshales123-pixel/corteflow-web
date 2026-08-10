@@ -65,12 +65,6 @@
     background:var(--navaja);
     overflow:hidden;
   }
-  .card::before{
-    content:""; position:absolute; inset:-20%; pointer-events:none;
-    background:radial-gradient(ellipse 55% 55% at 50% 42%, var(--glow), transparent 70%);
-    opacity:.55;
-  }
-  .card.soft::before{ opacity:.28; background:radial-gradient(ellipse 50% 50% at 78% 12%, var(--glow), transparent 70%); }
 
   /* Guías de corte — solo para revisión, se ocultan al exportar */
   .guide{ position:absolute; inset:24px; border:1px dashed rgba(52,211,153,.55); pointer-events:none; z-index:5; }
