@@ -14,6 +14,7 @@ import {
   Megaphone,
   Gift,
   Wallet,
+  Banknote,
   ClipboardCheck,
   type LucideIcon,
 } from "lucide-react";
@@ -58,6 +59,11 @@ const features: { icon: LucideIcon; title: string; desc: string }[] = [
     icon: Wallet,
     title: "Ingresos, gastos y rentabilidad",
     desc: "Cargá gastos y adelantos y sabé al toque si el mes te da ganancia real, sin Excel.",
+  },
+  {
+    icon: Banknote,
+    title: "Arqueo de caja automático",
+    desc: "Al cerrar el local, sabés al toque cuánto debería haber en la caja en efectivo y cuánto en MercadoPago — sin sacar la calculadora.",
   },
   {
     icon: Megaphone,
