@@ -11,8 +11,8 @@ const problemas = [
   },
   {
     emoji: "💸",
-    title: "Sueldos a ojo",
-    desc: "Calcular cuánto le pagás a cada barbero al final del mes es un dolor de cabeza.",
+    title: "Planilla y caja a ojo",
+    desc: "Pasar la planilla a mano, calcular sueldos y no saber si la caja cuadra. Un dolor de cabeza todos los días.",
   },
 ];
 
