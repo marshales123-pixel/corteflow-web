@@ -87,7 +87,7 @@ export default function Hero() {
 
           {/* Subtítulo */}
           <p className="text-humo text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            Sin papel. Sin WhatsApp caótico. Sin excusas.{" "}
+            Sin papel. Sin WhatsApp caótico. Sin dudas sobre si la caja cuadra.{" "}
             <br className="hidden sm:block" />
             CorteFlow pone tu barbería en piloto automático.
           </p>

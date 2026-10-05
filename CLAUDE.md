@@ -23,7 +23,14 @@ Esta web presenta el producto, los planes y permite que barberías interesadas c
 - WhatsApp automático al confirmar turno + recordatorio el día anterior
 - Cancelación self-service por el cliente
 - Reagendar turno online sin llamar (cambia día y hora sin cancelar)
-- Cálculo automático de sueldos por corte
+- Cálculo automático de sueldos por corte, con comisión por venta de productos
+- Planilla de papel cargada en 5 minutos, con aviso si la caja no cuadra
+- Cierre del día (desglose por barbero, arqueo de caja) y control de carga por sucursal
+- Facturación separada por monotributo (a qué CUIT va cada cobro)
+- Propinas por Mercado Pago registradas (la caja y el resumen de MP coinciden)
+- App para barberos (cuánto llevan ganado, bloquear almuerzo, cobrar en 2 toques) y permisos por rol
+- El cliente confirma su turno por WhatsApp (anti-ausentes)
+- Corte gratis de cumpleaños automático y reserva para dos
 - Estadísticas de ingresos y servicios
 - Marketing por WhatsApp con segmentación
 - Campaña automática de reseñas de Google por WhatsApp después del corte

@@ -23,6 +23,14 @@ const preguntas = [
     q: "¿El precio es en dólares? ¿Cómo pago?",
     a: "Los precios están en dólares para mantenerlos estables, pero pagás en pesos al cambio del día o en dólares si preferís. Aceptamos transferencia bancaria y Mercado Pago.",
   },
+  {
+    q: "¿Sirve si hoy anoto todo en una planilla de papel?",
+    a: "Sí, y es lo más común. Seguís con tu planilla si querés y a la noche la pasás al sistema en unos 5 minutos: cortes por barbero y medio de pago, pagos, propinas y gastos. Si la caja no cuadra con el total del papel, te avisa antes de guardar.",
+  },
+  {
+    q: "¿Mis barberos ven cuánto gana el negocio?",
+    a: "No. Cada barbero ve su agenda y cuánto lleva ganado él hoy, nada más. La plata del negocio la ven solo el dueño y el encargado, cada uno con lo que le corresponde.",
+  },
 ];
 
 export default function FAQ() {
