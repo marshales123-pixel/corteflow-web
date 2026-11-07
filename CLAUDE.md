@@ -7,7 +7,8 @@ Esta web presenta el producto, los planes y permite que barberías interesadas c
 
 ## Stack
 
-- Next.js 15 App Router + TypeScript + Tailwind CSS v4
+- Next.js 16.4.5 App Router + TypeScript + Tailwind CSS v4 (misma versión que barbershop-ms; leer `node_modules/next/dist/docs/` antes de tocar APIs de Next)
+- Vercel Web Analytics (`@vercel/analytics` fijo en **1.3.2**: desde 1.4 npm corta con ERESOLVE por un peer de SvelteKit)
 - Deploy en Vercel
 - Dominio: corteflow.com
 
@@ -17,31 +18,18 @@ Esta web presenta el producto, los planes y permite que barberías interesadas c
 **Fundador:** Gonzalo Guarnieri — Olivos, Buenos Aires
 **Demo live:** https://barbershopdemo-kappa.vercel.app/
 
-**Qué resuelve:** Reemplaza papel, anotadores y WhatsApp caótico con:
-- Reservas online 24/7 (el cliente saca turno solo)
-- Agenda digital por barbero en tiempo real
-- WhatsApp automático al confirmar turno + recordatorio el día anterior
-- Cancelación self-service por el cliente
-- Reagendar turno online sin llamar (cambia día y hora sin cancelar)
-- Cálculo automático de sueldos por corte, con comisión por venta de productos
-- Planilla de papel cargada en 5 minutos, con aviso si la caja no cuadra
-- Cierre del día (desglose por barbero, arqueo de caja) y control de carga por sucursal
-- Facturación separada por monotributo (a qué CUIT va cada cobro)
-- Propinas por Mercado Pago registradas (la caja y el resumen de MP coinciden)
-- App para barberos (cuánto llevan ganado, bloquear almuerzo, cobrar en 2 toques) y permisos por rol
-- El cliente confirma su turno por WhatsApp (anti-ausentes)
-- Corte gratis de cumpleaños automático y reserva para dos
-- Estadísticas de ingresos y servicios
-- Marketing por WhatsApp con segmentación
-- Campaña automática de reseñas de Google por WhatsApp después del corte
-- Google Analytics + Google Search Console incluidos en el setup
-- Páginas SEO por sucursal (ej. "barbería en Palermo") para rankear en búsquedas locales
-- Multi-sucursal con aislamiento total de datos
+**Qué resuelve (solo lo que el sistema hace HOY — la landing no promete nada que no exista):**
+- La caja cuadra: planilla de papel cargada en 5 minutos (y la planilla imprimible), cierre del día con arqueo, sueldos y comisiones calculados, precio por medio de pago y por día, propinas por MP, productos con stock al cobrar, totales por monotributo (NO factura en ARCA)
+- Cobro con QR de Mercado Pago desde el sistema — **piloto en Belgrano**: se muestra con la etiqueta "Nuevo · en prueba"
+- Reservas: web propia con la marca de la barbería (+ página SEO por sucursal), turno en 4 pasos, confirmación en pantalla + "Agregar al calendario", "Mis turnos" (cancelar/cambiar con el teléfono), reserva para dos, cumpleaños, atención sin turno
+- Clientes que vuelven: "Les toca volver" (aviso A MANO por WhatsApp), botón para pedir reseña + cartel QR, canal de cada reserva, fidelización por sede, mapa de ocupación
+- Equipo y sedes: panel del barbero desde el celu, permisos por rol, control de carga, auditoría, franquiciados
 
-**Precios:**
-- Plan Básico:         Setup USD 100 + USD 40/mes (1 sucursal)
-- Plan Profesional:    Setup USD 150 + USD 60/mes  ← el más vendido
-- Plan Multi-Sucursal: Setup USD 200 + USD 40/mes × sucursal
+⚠️ **NO prometer (no existe hoy, nov 2026):** WhatsApp automático al reservar, recordatorio/confirmación por WhatsApp, campañas que "se mandan solas", reseñas automáticas, "el link del turno" por WhatsApp (Twilio se sacó el 05/11/2026 y el agente de WhatsApp está apagado), tienda online (está apagada), plazos de puesta en marcha ("48 hs") ni nada sobre el dominio si el cliente se va. "App" = web desde el celu (no hay app de tienda).
+
+**Precios:** la ÚNICA fuente es `src/lib/precios.ts` (planes, setup, flag `SETUP_SIN_CARGO`). De ahí salen las tarjetas de Planes, la meta description, la imagen para compartir y el JSON-LD. Hoy: Básico USD 40/mes, Profesional USD 60/mes (1 sede), Multi-Sucursal USD 40/mes por sede **desde 2 sedes** (así nunca sale más barato que el Profesional); setup de lista 100/150/200, hoy sin cargo (sin fecha ni cupo: nunca escribir "por tiempo limitado"). Se cobra por sede: sin cargo por barbero ni comisión por reserva.
+
+**The Bulldog:** es el caso real (3 sedes: Olivos, Palermo, Belgrano). Se cuenta como "nació en The Bulldog / lo usamos todos los días". Nada de testimonios ni cifras inventadas; el "~10 reservas online por día en Olivos" sale de `barbershop-ms/CLAUDE.md` (medido el 13/10/2026).
 
 ## Identidad visual — Brand Book CorteFlow v1.0
 
@@ -79,7 +67,12 @@ Tokens expuestos en `@theme inline`: `--font-sans` (DM Sans), `--font-heading` (
 
 `src/components/Logo.tsx` — anillo hexagonal ABIERTO (hexágono sin el lado derecho, forma de "C"), trazado con `stroke` en gradiente `--ign-1`→`--ign-2` y un filtro de glow suave (`feGaussianBlur` + `feMerge`). Ya no es un hexágono relleno con una "C" en texto Arial encima.
 
-⚠️ **`Logo.tsx` no está importado en ningún lado del código** (verificado — no hay `icon.tsx`/favicon que lo use). El sitio real usa la imagen estática `/public/logo.png` en `Hero.tsx` y `Contacto.tsx`. Si se quiere que el "Hex Flow" se vea en el sitio, hay que regenerar `logo.png` (y el favicon) a partir de este componente, o reemplazar los `<img src="/logo.png">` por `<Logo />`.
+`Logo.tsx` muestra `public/logo-mark-144.webp` (~5 KB, generado con sharp desde `logo-mark.png` de 322 KB, que queda como original). Se usa en el header, el contacto y el pie. Favicon: `src/app/icon.png` (64 px) y `apple-icon.png` (180 px). `public/logo.png` (1 MB) no se usa.
+
+### Contraste (desvío consciente del Brand Book)
+- `--humo-2` pasó de `#6f6862` a `#8a827b`: el original daba 3,5:1 sobre grafito (mínimo 4,5:1).
+- Los botones con gradiente usan `.btn-ign` (texto **navaja**, 5,3–7,1:1); el texto filo sobre el gradiente daba 2,5–3,4:1.
+- JetBrains Mono se usa en precios, datos y etiquetas (`.eyebrow`).
 
 - **Estilo:** Tech moderno con energía — NO premium/lujoso/dorado
 
@@ -91,14 +84,19 @@ Cercano y directo. Le habla al dueño de la barbería, no al programador.
   ✓ "Sin papel. Sin WhatsApp caótico. Sin excusas."
   ✗ "Solución integral de gestión para establecimientos capilares."
 
-## Secciones de la landing
+## Secciones de la landing (`src/app/page.tsx`)
 
-1. Hero — slogan + CTA "Quiero una demo"
-2. Qué es — el problema que resuelve
-3. Features — 6-8 funcionalidades clave con íconos
-4. Planes — los 3 planes con precios
-5. Demo en vivo — link a la demo
-6. Contacto — WhatsApp directo a Gonzalo
+1. Header + Hero — titular, CTA de WhatsApp, "Ver cómo reserva un cliente", datos reales y una foto del asistente real
+2. Problema
+3. Funcionalidades — 4 bloques ("La caja cuadra" primero), 3–4 tarjetas grandes + "Y además" plegado
+4. Así se ve — 3 VIDEOS cortos del asistente real de The Bulldog (`public/videos/*.mp4|webm|webp`, ver abajo) + la web de The Bulldog
+5. De dónde sale (The Bulldog) · 6. Cómo funciona · 7. Planes · 8. FAQ (`<details>`, misma lista que el JSON-LD: `src/lib/faq.ts`) · 9. Contacto + Footer
+
+**Videos:** grabados con Playwright en `thebulldogbarbershop.com/reservar` (390×844, dpr 2, capturas de pantalla en bucle; `recordVideo` graba a 1x). NUNCA confirmar una reserva al grabar (bloquear `crear-turno` con `page.route`). `VideoCelular.tsx` no baja nada hasta que el video entra en pantalla, elige MP4 (H.264) o WebM según el navegador, se pausa al salir y con "reducir movimiento" queda en el póster.
+
+**Medición:** `LinkMedido.tsx` manda un evento a Vercel Analytics en cada botón de WhatsApp (`click_whatsapp` con `origen`: header, hero, plan_basico…) y cada WhatsApp lleva un texto distinto (`whatsappUrl()` en `src/lib/constants.ts`). Hay que activar Analytics en el proyecto de Vercel.
+
+**SEO:** `src/lib/seo.ts` (title, description, JSON-LD Organization + WebSite + SoftwareApplication con las ofertas + FAQPage; sin aggregateRating/review). OG y Twitter: `opengraph-image.tsx` / `twitter-image.tsx` (estáticas, en el build). `sitemap.ts` y `robots.ts` con `https://corteflow.com`.
 
 ## Contacto del desarrollador
 
