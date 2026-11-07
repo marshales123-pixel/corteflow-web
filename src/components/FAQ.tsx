@@ -1,90 +1,36 @@
-"use client";
+import { PREGUNTAS } from "@/lib/faq";
 
-import { useState } from "react";
-
-const preguntas = [
-  {
-    q: "¿Mis clientes tienen que bajar alguna app?",
-    a: "No. Reservan desde un link en el celular, como si pidieran una pizza online. Si tu cliente usa WhatsApp, puede reservar en CorteFlow.",
-  },
-  {
-    q: "¿Yo tengo que configurar todo?",
-    a: "Para nada. Yo cargo tu barbería completa: barberos, servicios, horarios y sucursales. Vos abrís el sistema y ya está funcionando.",
-  },
-  {
-    q: "¿Qué pasa si me quiero ir?",
-    a: "No hay contrato. Cancelás cuando querés. Y si decidís salir, te exporto toda la información de tus clientes y turnos — los datos son tuyos.",
-  },
-  {
-    q: "¿Y si el sistema falla un sábado a la mañana?",
-    a: "Corre en servidores de nivel empresarial con alta disponibilidad. Y si hay cualquier problema, me escribís por WhatsApp y lo resuelvo ese mismo día.",
-  },
-  {
-    q: "¿El precio es en dólares? ¿Cómo pago?",
-    a: "Los precios están en dólares para mantenerlos estables, pero pagás en pesos al cambio del día o en dólares si preferís. Aceptamos transferencia bancaria y Mercado Pago.",
-  },
-  {
-    q: "¿Sirve si hoy anoto todo en una planilla de papel?",
-    a: "Sí, y es lo más común. Seguís con tu planilla si querés y a la noche la pasás al sistema en unos 5 minutos: cortes por barbero y medio de pago, pagos, propinas y gastos. Si la caja no cuadra con el total del papel, te avisa antes de guardar.",
-  },
-  {
-    q: "¿Mis barberos ven cuánto gana el negocio?",
-    a: "No. Cada barbero ve su agenda y cuánto lleva ganado él hoy, nada más. La plata del negocio la ven solo el dueño y el encargado, cada uno con lo que le corresponde.",
-  },
-];
-
+// <details>/<summary>: las respuestas quedan en el HTML (Google las lee), anda sin
+// JavaScript y el navegador ya dice si está abierta o cerrada. Las mismas preguntas
+// van al JSON-LD FAQPage del layout.
 export default function FAQ() {
-  const [abierto, setAbierto] = useState<number | null>(null);
-
   return (
-    <section className="relative py-28 px-6">
-      {/* Separador superior */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
-
+    <section id="preguntas" className="relative py-24 sm:py-28 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-flama mb-3">
-            Preguntas frecuentes
-          </p>
-          <h2 className="text-4xl sm:text-5xl font-black text-filo leading-tight">
-            Lo que todo barbero pregunta
-          </h2>
+        <div className="text-center mb-14">
+          <p className="eyebrow mb-3">Preguntas frecuentes</p>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-filo leading-tight">Lo que todo barbero pregunta</h2>
         </div>
 
-        {/* Accordion */}
-        <div className="flex flex-col gap-3">
-          {preguntas.map(({ q, a }, i) => (
-            <div
-              key={i}
-              className="rounded-2xl border border-borde bg-grafito overflow-hidden transition-colors hover:border-borde-2"
+        <div className="faq flex flex-col gap-3">
+          {PREGUNTAS.map(({ q, a }) => (
+            <details
+              key={q}
+              className="group rounded-2xl border border-borde bg-grafito overflow-hidden transition-colors hover:border-borde-2 open:border-borde-2"
             >
-              <button
-                onClick={() => setAbierto(abierto === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
-              >
+              <summary className="flex items-center justify-between gap-4 px-5 sm:px-6 py-5 cursor-pointer select-none">
                 <span className="text-filo font-semibold text-sm sm:text-base leading-snug">{q}</span>
-                <span
-                  className={`text-flama text-xl font-bold shrink-0 transition-transform duration-200 ${
-                    abierto === i ? "rotate-45" : ""
-                  }`}
-                >
+                <span className="faq-mas text-flama text-2xl leading-none shrink-0 transition-transform duration-200" aria-hidden="true">
                   +
                 </span>
-              </button>
-
-              {abierto === i && (
-                <div className="px-6 pb-5">
-                  <p className="text-humo text-sm leading-relaxed">{a}</p>
-                </div>
-              )}
-            </div>
+              </summary>
+              <p className="px-5 sm:px-6 pb-5 text-humo text-sm leading-relaxed">{a}</p>
+            </details>
           ))}
         </div>
       </div>
 
-      {/* Separador inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" aria-hidden="true" />
     </section>
   );
 }
