@@ -13,7 +13,9 @@
   --borde-2: rgba(255, 244, 232, 0.16); /* borde marcado */
   --filo: #f7f3ee;        /* texto principal (blanco cálido) */
   --humo: #a79f97;        /* texto secundario */
-  --humo-2: #6f6862;      /* texto terciario/apagado */
+  /* Texto terciario (valor del Brand Book). NO usar para texto de lectura: da
+     3,5:1 sobre grafito (pide 4,5:1). Para descripciones, usar --humo. */
+  --humo-2: #6f6862;
   --ign-1: #ef4444;       /* inicio gradiente */
   --ign-2: #f97316;       /* fin gradiente */
   --flama: #f45c24;       /* naranja plano sólido — íconos, bordes, highlights, botones */
@@ -75,6 +77,58 @@ h6 {
 
 .gradient-bg {
   background: linear-gradient(135deg, var(--ign-1), var(--ign-2));
+}
+
+/* Botón principal: gradiente ign con texto NAVAJA. El texto filo (blanco) sobre el
+   gradiente daba 3,4:1 en la punta roja y 2,5:1 en la naranja; navaja da 5,3–7,1:1. */
+.btn-ign {
+  background: linear-gradient(135deg, var(--ign-1), var(--ign-2));
+  color: var(--navaja);
+}
+
+/* Etiqueta chica arriba de cada título de sección (JetBrains Mono, como pide el Brand Book). */
+.eyebrow {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--flama);
+}
+
+/* Foco visible en fondo oscuro (teclado). */
+:focus-visible {
+  outline: 2px solid var(--flama);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* FAQ con <details>: sin el triángulo del navegador, con un "+" propio que gira. */
+.faq summary {
+  list-style: none;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq details[open] .faq-mas,
+details.faq[open] .faq-mas {
+  transform: rotate(45deg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .glow {

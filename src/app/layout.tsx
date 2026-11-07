@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Sora, DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SITE_URL } from "@/lib/constants";
+import { TITULO, DESCRIPCION, DESCRIPCION_CORTA, jsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const sora = Sora({
@@ -20,24 +23,15 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["500"],
 });
 
-const siteUrl = "https://corteflow.com";
-
+// La imagen para compartir (og:image y twitter:image) la ponen solos
+// src/app/opengraph-image.tsx y twitter-image.tsx: no se declara a mano acá.
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "CorteFlow — Sistema de gestión para barberías",
+    default: TITULO,
     template: "%s | CorteFlow",
   },
-  description:
-    "Reservas online 24/7, agenda digital y WhatsApp automático para tu barbería. Sin papel. Sin WhatsApp caótico. Sin excusas.",
-  keywords: [
-    "sistema gestión barbería",
-    "reservas online barbería",
-    "agenda digital barbería",
-    "software barbería argentina",
-    "turnos barbería online",
-    "CorteFlow",
-  ],
+  description: DESCRIPCION,
   authors: [{ name: "Gonzalo Guarnieri" }],
   creator: "CorteFlow",
   alternates: {
@@ -46,27 +40,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_AR",
-    url: siteUrl,
+    url: SITE_URL,
     siteName: "CorteFlow",
-    title: "CorteFlow — Sistema de gestión para barberías",
-    description:
-      "Reservas online 24/7, agenda digital y WhatsApp automático. Sin papel. Sin WhatsApp caótico.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "CorteFlow — Sistema de gestión para barberías",
-      },
-    ],
+    title: TITULO,
+    description: DESCRIPCION_CORTA,
   },
   twitter: {
     card: "summary_large_image",
-    title: "CorteFlow — Sistema de gestión para barberías",
-    description:
-      "Reservas online 24/7, agenda digital y WhatsApp automático para tu barbería.",
-    images: ["/og-image.png"],
-    creator: "@corteflow_ar",
+    title: TITULO,
+    description: DESCRIPCION_CORTA,
   },
   robots: {
     index: true,
@@ -88,10 +70,19 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="es"
+      lang="es-AR"
       className={`${sora.variable} ${dmSans.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="min-h-screen bg-[var(--navaja)] text-[var(--filo)]">{children}</body>
+      <body className="min-h-screen bg-[var(--navaja)] text-[var(--filo)]">
+        <script
+          type="application/ld+json"
+          // "<" escapado: nada del texto puede cerrar el <script>.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()).replace(/</g, "\\u003c") }}
+        />
+        {children}
+        {/* Vercel Web Analytics: visitas + eventos de los botones (LinkMedido). Hay que activarlo en Vercel → Analytics. */}
+        <Analytics />
+      </body>
     </html>
   );
 }

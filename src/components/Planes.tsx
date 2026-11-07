@@ -1,183 +1,168 @@
-import { WHATSAPP_URL } from "@/lib/constants";
+import { whatsappUrl } from "@/lib/constants";
+import { PLANES, ORDEN_PLANES, SETUP_SIN_CARGO, mensualMinimo, usd, type PlanId } from "@/lib/precios";
+import LinkMedido from "@/components/LinkMedido";
 
-// Promo de lanzamiento: setup gratis por tiempo limitado / primeros clientes.
-// Para volver al precio de lista, poner en false — no borra los precios reales.
-const SETUP_GRATIS = true;
-
-const planes = [
-  {
-    nombre: "Básico",
-    setup: "USD 100",
-    mensual: "USD 40/mes",
-    desc: "Ideal para empezar. Una sede, reservas online y agenda digital.",
+const contenido: Record<PlanId, { desc: string; features: string[]; destacado: boolean }> = {
+  basico: {
+    desc: "Para arrancar: tu web y los turnos online de una sede.",
+    destacado: false,
     features: [
       "1 sede",
-      "Reservas online 24/7",
+      "Tu web con tu marca y página para Google",
+      "Turnos online en 4 pasos, a cualquier hora",
       "Agenda digital por barbero",
-      "WhatsApp automático al reservar",
-      "El cliente cancela solo",
-      "El cliente confirma su turno por WhatsApp",
-      "Corte gratis de cumpleaños automático",
-      "Reserva para dos",
-      "Landing page con SEO",
-      "Google Analytics incluido",
+      "\"Mis turnos\": el cliente cancela o cambia solo",
+      "El turno en el calendario del cliente",
+      "Corte de cumpleaños y reserva para dos",
+      "Google Analytics y Search Console",
     ],
-    destacado: false,
-    cta: "Empezar con Básico",
   },
-  {
-    nombre: "Profesional",
-    setup: "USD 150",
-    mensual: "USD 60/mes",
-    desc: "El más elegido. Todo lo del Básico más caja, sueldos, marketing y estadísticas.",
+  profesional: {
+    desc: "Para una sede: todo lo del Básico más la caja, los sueldos y los clientes que vuelven.",
+    destacado: true,
     features: [
       "1 sede",
       "Todo el plan Básico",
-      "Planilla del día cargada en 5 minutos",
+      "Planilla del día en una sola pantalla (te la imprimimos)",
       "Cierre del día y arqueo de caja",
-      "Cálculo automático de sueldos",
-      "Comisión por venta de productos",
-      "Facturación separada por monotributo",
-      "App para tus barberos",
-      "Marketing por WhatsApp",
-      "Estadísticas de ingresos",
-      "Programa de fidelización",
-      "Galería de fotos",
+      "Sueldos y comisiones calculados solos",
+      "Precio de lista y descuento en efectivo (también por día)",
+      "Cobro con QR de Mercado Pago (en prueba)",
+      "Productos con stock al cobrar",
+      "Cuánto facturó cada monotributo",
+      "Panel para tus barberos, desde el celu",
+      "\"Les toca volver\" y reseñas en Google",
+      "Fidelización y estadísticas",
     ],
-    destacado: true,
-    cta: "Empezar con Profesional",
   },
-  {
-    nombre: "Multi-Sucursal",
-    setup: "USD 200",
-    mensual: "USD 40/mes × sede",
-    desc: "Para barberías con varias sedes. Gestión centralizada con datos aislados.",
+  multi: {
+    desc: "Para barberías con varias sedes o franquicias. Todo el Profesional en cada sede.",
+    destacado: false,
     features: [
-      "Sedes ilimitadas",
-      "Todo el plan Profesional",
-      "Control de carga por sede: sabés cuál no cargó",
-      "Las sedes no se mezclan",
-      "Panel super admin global",
+      `Desde ${PLANES.multi.sedesMinimas} sedes`,
+      "Todo el plan Profesional en cada sede",
+      "Ves todas tus sedes juntas o de a una",
+      "Sabés qué sede no cargó el día",
+      "Franquicias: cada franquiciado ve solo su sede",
       "Reportes por sucursal",
     ],
-    destacado: false,
-    cta: "Empezar con Multi-Sucursal",
   },
-];
+};
 
 export default function Planes() {
-  const whatsappUrl = WHATSAPP_URL;
-
   return (
-    <section className="relative py-28 px-6 overflow-hidden">
-      {/* Glow de fondo centrado */}
+    <section id="planes" className="relative py-24 sm:py-28 px-4 sm:px-6 overflow-hidden">
       <div
         className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 50% 50%, rgba(249,115,22,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 40% at 50% 50%, color-mix(in srgb, var(--ign-2) 7%, transparent) 0%, transparent 70%)",
         }}
       />
 
       <div className="relative max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-flama mb-3">
-            Planes y precios
+        <div className="text-center mb-14">
+          <p className="eyebrow mb-3">Planes y precios</p>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-filo leading-tight">Elegí el que va con tu barbería</h2>
+          <p className="mt-4 text-humo text-lg max-w-2xl mx-auto">
+            Pagás por sucursal: sin cargo por barbero ni comisión por reserva o por cliente nuevo.
+            Sin permanencia, sin sorpresas.
           </p>
-          <h2 className="text-4xl sm:text-5xl font-black text-filo leading-tight">
-            Elegí el que va con tu barbería
-          </h2>
-          <p className="mt-4 text-humo text-lg max-w-xl mx-auto">
-            {SETUP_GRATIS
-              ? "Mensualidad baja y, por tiempo limitado, arrancás sin pagar el setup. Sin contratos, sin sorpresas."
-              : "Precio único de setup + mensualidad baja. Sin contratos, sin sorpresas."}
-          </p>
-          {SETUP_GRATIS && (
-            <div className="inline-flex items-center gap-2 mt-5 px-4 py-1.5 rounded-full bg-ok/10 border border-ok/30 text-ok text-xs font-bold tracking-wide">
-              <span className="w-1.5 h-1.5 rounded-full bg-ok" />
-              LANZAMIENTO · SETUP GRATIS POR TIEMPO LIMITADO
-            </div>
+          {SETUP_SIN_CARGO && (
+            <p className="inline-flex items-center gap-2 mt-5 px-4 py-1.5 rounded-full bg-ok/10 border border-ok/30 text-ok font-mono text-xs font-medium tracking-wide uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-ok" aria-hidden="true" />
+              Hoy el setup va sin cargo
+            </p>
           )}
         </div>
 
-        {/* Cards */}
-        <div className="grid sm:grid-cols-3 gap-6">
-          {planes.map((plan) => (
-            <div
-              key={plan.nombre}
-              className={`relative rounded-2xl flex flex-col p-7 transition-all duration-300 ${
-                plan.destacado
-                  ? "border-2 border-flama/60 bg-grafito-2 glow sm:scale-105 sm:-mx-1"
-                  : "border border-borde-2 bg-grafito hover:border-borde-2"
-              }`}
-            >
-              {/* Badge popular */}
-              {plan.destacado && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                  <span className="px-4 py-1 rounded-full gradient-bg text-filo text-xs font-bold tracking-wide shadow-lg">
-                    RECOMENDADO
-                  </span>
-                </div>
-              )}
-
-              <div className="mb-6">
-                <h3 className="text-filo font-black text-xl mb-1">{plan.nombre}</h3>
-                <p className="text-humo-2 text-sm">{plan.desc}</p>
-              </div>
-
-              {/* Precio */}
-              <div className="mb-6">
-                <div className="text-humo text-sm mb-1">Setup único</div>
-                {SETUP_GRATIS ? (
-                  <div className="flex items-center gap-2">
-                    <span className="text-humo-2 text-lg line-through">{plan.setup}</span>
-                    <span className="text-ok font-black text-2xl">GRATIS</span>
-                  </div>
-                ) : (
-                  <div className="text-filo font-bold text-2xl">{plan.setup}</div>
-                )}
-                <p className="text-humo-2 text-xs mt-0.5">
-                  {SETUP_GRATIS ? "Configuración completa incluida — promo de lanzamiento" : "Configuración completa a cargo de CorteFlow"}
-                </p>
-                <div className="mt-3 text-humo text-sm mb-1">Mensual</div>
-                <div className="gradient-text font-black text-3xl">{plan.mensual}</div>
-                <p className="text-humo-2 text-xs mt-0.5">Con 3 turnos extra por semana se paga solo</p>
-              </div>
-
-              {/* Features */}
-              <ul className="flex flex-col gap-2.5 mb-8 flex-1">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-humo">
-                    <span className="gradient-text font-bold">✓</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-full text-center py-3.5 rounded-xl font-bold text-sm transition-all ${
-                  plan.destacado
-                    ? "gradient-bg text-filo glow hover:opacity-90"
-                    : "border border-borde-2 text-filo hover:bg-grafito-2 hover:border-borde-2"
+        <div className="grid md:grid-cols-3 gap-6 md:gap-5 lg:gap-6 items-stretch">
+          {ORDEN_PLANES.map((id) => {
+            const plan = PLANES[id];
+            const c = contenido[id];
+            const href = whatsappUrl(`Hola Gonzalo, me interesa el plan ${plan.nombre} de CorteFlow`);
+            return (
+              <div
+                key={id}
+                className={`relative rounded-2xl flex flex-col p-6 sm:p-7 ${
+                  c.destacado
+                    ? "order-first md:order-none border-2 border-flama/60 bg-grafito-2 glow md:scale-[1.03]"
+                    : "border border-borde-2 bg-grafito"
                 }`}
               >
-                {plan.cta}
-              </a>
-            </div>
-          ))}
+                {c.destacado && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                    <span className="px-4 py-1 rounded-full btn-ign font-mono text-xs font-medium tracking-wide shadow-lg">
+                      RECOMENDADO
+                    </span>
+                  </div>
+                )}
+
+                <div className="mb-6">
+                  <h3 className="text-filo font-extrabold text-xl mb-1">{plan.nombre}</h3>
+                  <p className="text-humo text-sm">{c.desc}</p>
+                </div>
+
+                <div className="mb-6">
+                  <div className="text-humo text-sm mb-1">Mensual</div>
+                  <div className="flex items-baseline gap-2 flex-wrap">
+                    <span className="font-mono font-medium text-3xl gradient-text">{usd(plan.mensual)}</span>
+                    <span className="text-humo text-sm">{plan.porSede ? "/mes por sede" : "/mes"}</span>
+                  </div>
+                  {plan.porSede && (
+                    <p className="text-humo text-xs mt-1">
+                      Desde {plan.sedesMinimas} sedes: <span className="font-mono">{usd(mensualMinimo(plan))}</span>/mes
+                    </p>
+                  )}
+
+                  <div className="mt-4 text-humo text-sm mb-1">Setup único</div>
+                  {SETUP_SIN_CARGO ? (
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-humo text-lg line-through" aria-label={`Precio de lista ${usd(plan.setup)}`}>
+                        {usd(plan.setup)}
+                      </span>
+                      <span className="text-ok font-bold text-lg">Sin cargo</span>
+                    </div>
+                  ) : (
+                    <div className="font-mono text-filo font-medium text-2xl">{usd(plan.setup)}</div>
+                  )}
+                  <p className="text-humo text-xs mt-1">Te lo dejamos configurado nosotros</p>
+                </div>
+
+                <ul className="flex flex-col gap-2.5 mb-8 flex-1">
+                  {c.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-humo">
+                      <span className="text-flama font-bold" aria-hidden="true">✓</span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <LinkMedido
+                  href={href}
+                  evento="click_whatsapp"
+                  origen={`plan_${id}`}
+                  className={`w-full text-center py-3.5 rounded-xl font-bold text-sm transition-opacity ${
+                    c.destacado
+                      ? "btn-ign glow hover:opacity-90"
+                      : "border border-borde-2 text-filo hover:bg-grafito-2"
+                  }`}
+                >
+                  Consultar por {plan.nombre}
+                </LinkMedido>
+              </div>
+            );
+          })}
         </div>
 
-        <p className="text-center text-humo-2 text-sm mt-8">
-          ¿Tenés dudas? Escribinos por WhatsApp y te armamos una propuesta a medida.
-        </p>
+        <div className="mt-10 text-center text-sm text-humo space-y-2">
+          <p>Con 3 turnos extra por semana, la mensualidad se paga sola.</p>
+          <p>Las mejoras nuevas te llegan sin pagar de más.</p>
+        </div>
       </div>
 
-      {/* Separador inferior */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-borde-2 to-transparent" aria-hidden="true" />
     </section>
   );
 }

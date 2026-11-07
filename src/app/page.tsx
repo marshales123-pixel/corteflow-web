@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Problema from "@/components/Problema";
 import Features from "@/components/Features";
@@ -7,19 +8,24 @@ import Clientes from "@/components/Clientes";
 import Planes from "@/components/Planes";
 import FAQ from "@/components/FAQ";
 import Contacto from "@/components/Contacto";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <Problema />
-      <Features />
-      <Pasos />
-      <Producto />
-      <Clientes />
-      <Planes />
-      <FAQ />
-      <Contacto />
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Problema />
+        <Features />
+        <Producto />
+        <Clientes />
+        <Pasos />
+        <Planes />
+        <FAQ />
+        <Contacto />
+      </main>
+      <Footer />
+    </>
   );
 }

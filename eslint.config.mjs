@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Scripts internos de marketing (Node, con require): no son parte de la web.
+    "marketing/**",
   ]),
 ]);
 
