@@ -5,7 +5,7 @@ import { PREGUNTAS } from "@/lib/faq";
 export const TITULO = "CorteFlow — Sistema de turnos, caja y sueldos para barberías";
 
 /** Meta description: el precio sale de lib/precios.ts (única fuente). */
-export const DESCRIPCION = `Turnos online con tu marca, caja que cuadra con tu planilla, sueldos calculados y cobro con QR de Mercado Pago. Desde ${usd(DESDE_MENSUAL)}/mes.`;
+export const DESCRIPCION = `Turnos online con tu marca, caja que cuadra con tu planilla y sueldos calculados solos. Desde ${usd(DESDE_MENSUAL)}/mes.`;
 
 export const DESCRIPCION_CORTA = `Turnos online, caja que cuadra con tu planilla y sueldos calculados solos. Desde ${usd(DESDE_MENSUAL)}/mes.`;
 

@@ -13,11 +13,11 @@ export const PREGUNTAS: { q: string; a: string }[] = [
   },
   {
     q: "¿Sirve si hoy anoto todo en una planilla de papel?",
-    a: "Sí, y es lo más común. Te imprimimos la planilla del día con tus barberos, servicios y precios; el encargado la llena como siempre y a la noche se pasa al sistema en unos 5 minutos. Si la caja no cuadra con el total del papel, te avisa antes de guardar.",
+    a: "Sí, y es lo más común. Te imprimimos la planilla del día con tus barberos, servicios y precios; el encargado la llena como siempre y a la noche se pasa al sistema de una sola vez, no turno por turno. Si la caja no cuadra con el total del papel, te avisa antes de guardar.",
   },
   {
     q: "¿Sirve con Mercado Pago?",
-    a: "Sí. Cada medio de pago puede tener su precio (efectivo, transferencia, QR o tarjeta) y las propinas que entran por Mercado Pago quedan registradas, así la caja coincide con el resumen. Además estamos probando en una sede el cobro con el QR del mostrador: muestra el monto exacto y, cuando el cliente paga, el turno queda cobrado solo.",
+    a: "Sí. Cada servicio tiene su precio de lista y su precio con descuento en efectivo (la transferencia puede ir al precio de efectivo si querés), y las propinas que entran por Mercado Pago quedan registradas, así la caja coincide con el resumen. Además estamos probando en una sede el cobro con el QR del mostrador: muestra el monto exacto y, cuando el cliente paga, el turno queda cobrado solo.",
   },
   {
     q: "¿Emite facturas?",
@@ -25,7 +25,7 @@ export const PREGUNTAS: { q: string; a: string }[] = [
   },
   {
     q: "¿Mis barberos ven cuánto gana el negocio?",
-    a: "No. Cada barbero ve su agenda y cuánto lleva ganado él hoy, nada más. La plata del negocio la ven solo el dueño y el encargado, cada uno con lo que le corresponde.",
+    a: "No. Un barbero ve su agenda y cuánto lleva ganado él hoy. La caja, los gastos, los sueldos y las estadísticas los ven solo el dueño y el encargado.",
   },
   {
     q: "¿Mis datos están seguros? ¿Quién los ve?",
@@ -33,18 +33,18 @@ export const PREGUNTAS: { q: string; a: string }[] = [
   },
   {
     q: "¿Y si alguien me llena la agenda de turnos truchos?",
-    a: "Cada número de teléfono puede tener hasta 3 turnos activos a la vez y hay un límite de reservas por conexión. Así nadie te bloquea la agenda.",
+    a: "Cada número de teléfono puede tener hasta 3 turnos activos a la vez y hay un límite de reservas por conexión. Así es muy difícil que alguien te bloquee la agenda.",
   },
   {
     q: "¿Y si el sistema falla un sábado a la mañana?",
-    a: "Corre en Vercel y Supabase, los mismos servicios que usan miles de empresas. Y si hay cualquier problema, me escribís por WhatsApp y lo resuelvo ese mismo día.",
+    a: "Corre en Vercel y Supabase, los mismos servicios que usan miles de empresas. Si hay cualquier problema, nos escribís por WhatsApp y te respondemos enseguida. Y aunque el sistema no ande, tu barbería sigue atendiendo: anotás en la planilla y se carga después.",
   },
   {
     q: "¿El precio es en dólares? ¿Cómo pago?",
-    a: "Los precios están en dólares para mantenerlos estables, pero pagás en pesos al cambio del día o en dólares si preferís. Aceptamos transferencia bancaria y Mercado Pago.",
+    a: "Los precios están en dólares para mantenerlos estables, pero pagás en pesos al dólar oficial del Banco Nación del día del pago, o en dólares si preferís. Aceptamos transferencia bancaria y Mercado Pago.",
   },
   {
     q: "¿Qué pasa si me quiero ir?",
-    a: "No hay contrato. Cancelás cuando querés. Y si decidís salir, te exporto toda la información de tus clientes y turnos: los datos son tuyos.",
+    a: "No hay permanencia mínima: te das de baja cuando quieras, avisando con 30 días. Y si te vas, te exportamos toda la información de tus clientes y turnos: los datos son tuyos.",
   },
 ];

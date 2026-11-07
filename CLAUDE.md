@@ -19,13 +19,17 @@ Esta web presenta el producto, los planes y permite que barberías interesadas c
 **Demo live:** https://barbershopdemo-kappa.vercel.app/
 
 **Qué resuelve (solo lo que el sistema hace HOY — la landing no promete nada que no exista):**
-- La caja cuadra: planilla de papel cargada en 5 minutos (y la planilla imprimible), cierre del día con arqueo, sueldos y comisiones calculados, precio por medio de pago y por día, propinas por MP, productos con stock al cobrar, totales por monotributo (NO factura en ARCA)
+- La caja cuadra: planilla de papel cargada de una sola vez, en una pantalla (y la planilla imprimible), cierre del día con arqueo, sueldos y comisiones calculados, precio de lista y descuento en efectivo (también por día), propinas por MP, productos con stock al cobrar, totales por monotributo (NO factura en ARCA)
 - Cobro con QR de Mercado Pago desde el sistema — **piloto en Belgrano**: se muestra con la etiqueta "Nuevo · en prueba"
 - Reservas: web propia con la marca de la barbería (+ página SEO por sucursal), turno en 4 pasos, confirmación en pantalla + "Agregar al calendario", "Mis turnos" (cancelar/cambiar con el teléfono), reserva para dos, cumpleaños, atención sin turno
 - Clientes que vuelven: "Les toca volver" (aviso A MANO por WhatsApp), botón para pedir reseña + cartel QR, canal de cada reserva, fidelización por sede, mapa de ocupación
 - Equipo y sedes: panel del barbero desde el celu, permisos por rol, control de carga, auditoría, franquiciados
 
-⚠️ **NO prometer (no existe hoy, nov 2026):** WhatsApp automático al reservar, recordatorio/confirmación por WhatsApp, campañas que "se mandan solas", reseñas automáticas, "el link del turno" por WhatsApp (Twilio se sacó el 05/11/2026 y el agente de WhatsApp está apagado), tienda online (está apagada), plazos de puesta en marcha ("48 hs") ni nada sobre el dominio si el cliente se va. "App" = web desde el celu (no hay app de tienda).
+⚠️ **NO prometer (no existe hoy, nov 2026):** WhatsApp automático al reservar, recordatorio/confirmación por WhatsApp, campañas que "se mandan solas", reseñas automáticas, "el link del turno" por WhatsApp (Twilio se sacó el 05/11/2026 y el agente de WhatsApp está apagado), tienda online (está apagada), plazos de puesta en marcha ("48 hs") ni nada sobre el dominio si el cliente se va. "App" = web desde el celu (no hay app de tienda). Tampoco: "5 minutos" para la planilla (no está medido: decir "de una sola vez" / "en una pantalla"), "el más elegido" (prueba social inventada), "sin contrato" (el contrato es mes a mes con 30 días de aviso: decir "sin permanencia"), "lo resuelvo el mismo día" ni links a `/reservar` de The Bulldog (un visitante podría sacar un turno real: se muestran los videos y la home).
+
+**Tono:** en plural ("te lo dejamos", "te exportamos", "nos escribís"), salvo el bloque de contacto ("Hablá directo con Gonzalo").
+
+**Precios por medio de pago (Ley 25.065):** nunca "más caro con tarjeta". Se dice "precio de lista" y "descuento en efectivo".
 
 **Precios:** la ÚNICA fuente es `src/lib/precios.ts` (planes, setup, flag `SETUP_SIN_CARGO`). De ahí salen las tarjetas de Planes, la meta description, la imagen para compartir y el JSON-LD. Hoy: Básico USD 40/mes, Profesional USD 60/mes (1 sede), Multi-Sucursal USD 40/mes por sede **desde 2 sedes** (así nunca sale más barato que el Profesional); setup de lista 100/150/200, hoy sin cargo (sin fecha ni cupo: nunca escribir "por tiempo limitado"). Se cobra por sede: sin cargo por barbero ni comisión por reserva.
 
@@ -70,7 +74,7 @@ Tokens expuestos en `@theme inline`: `--font-sans` (DM Sans), `--font-heading` (
 `Logo.tsx` muestra `public/logo-mark-144.webp` (~5 KB, generado con sharp desde `logo-mark.png` de 322 KB, que queda como original). Se usa en el header, el contacto y el pie. Favicon: `src/app/icon.png` (64 px) y `apple-icon.png` (180 px). `public/logo.png` (1 MB) no se usa.
 
 ### Contraste (desvío consciente del Brand Book)
-- `--humo-2` pasó de `#6f6862` a `#8a827b`: el original daba 3,5:1 sobre grafito (mínimo 4,5:1).
+- `--humo-2` queda en `#6f6862` (Brand Book) pero NO se usa para texto de lectura (da 3,5:1 sobre grafito); las descripciones van en `--humo`.
 - Los botones con gradiente usan `.btn-ign` (texto **navaja**, 5,3–7,1:1); el texto filo sobre el gradiente daba 2,5–3,4:1.
 - JetBrains Mono se usa en precios, datos y etiquetas (`.eyebrow`).
 
@@ -86,7 +90,7 @@ Cercano y directo. Le habla al dueño de la barbería, no al programador.
 
 ## Secciones de la landing (`src/app/page.tsx`)
 
-1. Header + Hero — titular, CTA de WhatsApp, "Ver cómo reserva un cliente", datos reales y una foto del asistente real
+1. Header + Hero — titular, CTA de WhatsApp, "Ver la reserva en video ↓" (ancla a #asi-se-ve), datos reales ("3 sedes · 4 pasos · 1 pantalla") y una foto del asistente real
 2. Problema
 3. Funcionalidades — 4 bloques ("La caja cuadra" primero), 3–4 tarjetas grandes + "Y además" plegado
 4. Así se ve — 3 VIDEOS cortos del asistente real de The Bulldog (`public/videos/*.mp4|webm|webp`, ver abajo) + la web de The Bulldog

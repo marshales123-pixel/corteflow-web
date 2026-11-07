@@ -2,18 +2,18 @@ import Image from "next/image";
 import MarcoCelular from "@/components/MarcoCelular";
 import VideoCelular from "@/components/VideoCelular";
 import LinkMedido from "@/components/LinkMedido";
-import { BULLDOG_RESERVAR_URL } from "@/lib/constants";
+import { BULLDOG_URL } from "@/lib/constants";
 
-// Videos grabados en la web real de The Bulldog (thebulldogbarbershop.com/reservar),
+// Videos grabados en el asistente de reserva real de The Bulldog,
 // noviembre 2026. Se navega hasta el resumen y NUNCA se confirma la reserva.
 const clips = [
   {
     src: "/videos/reserva-sede-servicio",
     poster: "/videos/reserva-sede-servicio.webp",
     titulo: "Elige sede y servicio",
-    desc: "Ve el precio en efectivo y con transferencia, QR o tarjeta, y el de los días más baratos.",
+    desc: "Ve el precio en efectivo y el de lista, y el de los días más baratos.",
     label:
-      "Video de la reserva online de The Bulldog: el cliente elige la sede Belgrano y ve los servicios con su precio en efectivo y con transferencia, QR o tarjeta; después elige Corte.",
+      "Video de la reserva online de The Bulldog: el cliente elige la sede Belgrano y ve los servicios con su precio en efectivo y su precio de lista; después elige Corte.",
   },
   {
     src: "/videos/reserva-dia-hora",
@@ -29,7 +29,7 @@ const clips = [
     titulo: "Revisa y confirma",
     desc: "Un resumen con el precio de ese día. Cuatro pasos y listo, sin llamarte ni escribirte.",
     label:
-      "Video de la reserva online: aparece el resumen del turno con sede, día, horario, servicio y el precio de ese martes en efectivo y con tarjeta.",
+      "Video de la reserva online: aparece el resumen del turno con sede, día, horario, servicio y el precio de ese martes en efectivo y de lista.",
   },
 ];
 
@@ -104,12 +104,12 @@ export default function Producto() {
               con tu nombre, tus fotos y tus precios, y con una página por sucursal para salir en Google.
             </p>
             <LinkMedido
-              href={BULLDOG_RESERVAR_URL}
-              evento="click_ver_reserva"
+              href={BULLDOG_URL}
+              evento="click_ver_bulldog"
               origen="asi_se_ve"
               className="mt-5 inline-flex items-center gap-1 py-3 text-flama font-semibold hover:underline underline-offset-4"
             >
-              Ver la reserva en vivo <span aria-hidden="true">→</span>
+              Ver la web de The Bulldog <span aria-hidden="true">→</span>
             </LinkMedido>
           </div>
         </div>

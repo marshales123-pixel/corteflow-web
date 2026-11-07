@@ -18,15 +18,15 @@ const contenido: Record<PlanId, { desc: string; features: string[]; destacado: b
     ],
   },
   profesional: {
-    desc: "El más elegido. Todo lo del Básico más la caja, los sueldos y los clientes que vuelven.",
+    desc: "Para una sede: todo lo del Básico más la caja, los sueldos y los clientes que vuelven.",
     destacado: true,
     features: [
       "1 sede",
       "Todo el plan Básico",
-      "Planilla del día en 5 minutos (te la imprimimos)",
+      "Planilla del día en una sola pantalla (te la imprimimos)",
       "Cierre del día y arqueo de caja",
       "Sueldos y comisiones calculados solos",
-      "Precios por medio de pago y por día",
+      "Precio de lista y descuento en efectivo (también por día)",
       "Cobro con QR de Mercado Pago (en prueba)",
       "Productos con stock al cobrar",
       "Cuánto facturó cada monotributo",
@@ -67,7 +67,7 @@ export default function Planes() {
           <h2 className="text-4xl sm:text-5xl font-extrabold text-filo leading-tight">Elegí el que va con tu barbería</h2>
           <p className="mt-4 text-humo text-lg max-w-2xl mx-auto">
             Pagás por sucursal: sin cargo por barbero ni comisión por reserva o por cliente nuevo.
-            Sin contrato, sin sorpresas.
+            Sin permanencia, sin sorpresas.
           </p>
           {SETUP_SIN_CARGO && (
             <p className="inline-flex items-center gap-2 mt-5 px-4 py-1.5 rounded-full bg-ok/10 border border-ok/30 text-ok font-mono text-xs font-medium tracking-wide uppercase">

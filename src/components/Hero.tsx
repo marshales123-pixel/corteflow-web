@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { whatsappUrl, BULLDOG_RESERVAR_URL } from "@/lib/constants";
+import { whatsappUrl } from "@/lib/constants";
 import LinkMedido from "@/components/LinkMedido";
 import MarcoCelular from "@/components/MarcoCelular";
 import { WhatsAppIcon } from "@/components/iconos";
@@ -9,7 +9,7 @@ const DEMO_HERO = whatsappUrl("Hola Gonzalo, vi la web de CorteFlow y quiero una
 const datos = [
   { valor: "3 sedes", texto: "usándolo todos los días" },
   { valor: "4 pasos", texto: "para sacar turno" },
-  { valor: "5 min", texto: "para pasar la planilla del día" },
+  { valor: "1 pantalla", texto: "para pasar la planilla del día" },
 ];
 
 export default function Hero() {
@@ -58,26 +58,24 @@ export default function Hero() {
                 <WhatsAppIcon size={20} />
                 Quiero una demo por WhatsApp
               </LinkMedido>
-              <LinkMedido
-                href={BULLDOG_RESERVAR_URL}
-                evento="click_ver_reserva"
-                origen="hero"
+              <a
+                href="#asi-se-ve"
                 className="inline-flex items-center gap-1 py-3 text-flama font-semibold hover:underline underline-offset-4"
               >
-                Ver cómo reserva un cliente <span aria-hidden="true">→</span>
-              </LinkMedido>
+                Ver la reserva en video <span aria-hidden="true">↓</span>
+              </a>
             </div>
 
             <p className="mt-5 text-sm text-humo">
               Funciona en el celu y en la compu, sin instalar nada ·{" "}
-              <span className="text-filo font-medium">Sin contrato</span>
+              <span className="text-filo font-medium">Sin permanencia</span>
             </p>
 
             {/* Datos reales (The Bulldog) */}
             <ul className="mt-12 grid grid-cols-3 gap-4 sm:gap-8 max-w-xl mx-auto lg:mx-0">
               {datos.map(({ valor, texto }) => (
                 <li key={valor} className="text-center lg:text-left">
-                  <span className="block font-mono text-xl sm:text-2xl font-medium gradient-text">{valor}</span>
+                  <span className="block whitespace-nowrap font-mono text-base sm:text-2xl font-medium gradient-text">{valor}</span>
                   <span className="block text-xs sm:text-sm text-humo mt-1 leading-snug">{texto}</span>
                 </li>
               ))}
@@ -89,7 +87,7 @@ export default function Hero() {
             <MarcoCelular className="w-[min(78vw,290px)] rotate-[2deg]">
               <Image
                 src="/videos/reserva-precios.webp"
-                alt="Paso 2 de la reserva online de The Bulldog: cada servicio con su precio en efectivo y con transferencia, QR o tarjeta, y el precio de los lunes, martes y miércoles."
+                alt="Paso 2 de la reserva online de The Bulldog: cada servicio con su precio en efectivo y su precio de lista, y el precio de los lunes, martes y miércoles."
                 fill
                 sizes="290px"
                 className="object-cover object-top"

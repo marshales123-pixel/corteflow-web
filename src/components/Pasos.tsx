@@ -1,8 +1,8 @@
 const pasos = [
   {
     numero: "01",
-    titulo: "Me escribís por WhatsApp",
-    desc: "Me contás cómo es tu barbería: cuántos barberos, qué servicios, precios y horarios. Con 15 minutos alcanza.",
+    titulo: "Nos escribís por WhatsApp",
+    desc: "Nos contás cómo es tu barbería: cuántos barberos, qué servicios, precios y horarios. Con una charla corta alcanza.",
   },
   {
     numero: "02",

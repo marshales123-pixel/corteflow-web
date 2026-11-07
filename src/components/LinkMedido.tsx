@@ -12,7 +12,7 @@ type Props = ComponentProps<"a"> & {
 
 /**
  * Link externo que, además de abrir, cuenta el clic en Vercel Web Analytics.
- * Se usa en todos los botones de WhatsApp y en "Ver cómo reserva un cliente":
+ * Se usa en todos los botones de WhatsApp y en los links a la web de The Bulldog:
  * así se sabe qué botón trae las consultas.
  */
 export default function LinkMedido({ evento, origen, onClick, ...props }: Props) {

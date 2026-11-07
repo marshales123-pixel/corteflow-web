@@ -45,7 +45,7 @@ const bloques: Bloque[] = [
     destacadas: [
       {
         icon: FileSpreadsheet,
-        title: "Tu planilla de papel, cargada en 5 minutos",
+        title: "Tu planilla de papel, cargada de una sola vez",
         desc: "A la noche pasás el día entero de una: cortes por barbero y medio de pago, pagos, propinas y gastos. Si la caja no da con el total del papel, te avisa antes de guardar.",
       },
       {
@@ -68,8 +68,8 @@ const bloques: Bloque[] = [
     ademas: [
       {
         icon: Tags,
-        title: "Precio en efectivo y con tarjeta, como lo cobrás vos", corto: "Precio por medio de pago y por día",
-        desc: "Cada medio de pago con su precio, la transferencia como efectivo si querés y precios más bajos los días flojos. Cada botón de cobro muestra cuánto cobrar.",
+        title: "Precio de lista y descuento en efectivo, como lo cobrás vos", corto: "Descuento en efectivo y por día",
+        desc: "Cada servicio con su precio de lista y su precio con descuento en efectivo, la transferencia al precio de efectivo si querés y un descuento mayor los días flojos. Cada botón de cobro muestra cuánto cobrar.",
       },
       {
         icon: Printer,
@@ -134,7 +134,7 @@ const bloques: Bloque[] = [
       {
         icon: Cake,
         title: "Corte de cumpleaños", corto: "Cumpleaños",
-        desc: "Si reserva el día de su cumple, el turno sale gratis solo. Y cada mañana ves quién cumple para saludarlo.",
+        desc: "Si tiene su cumple cargado y reserva ese día, el turno sale en $0 solo. Y cada mañana ves quién cumple para saludarlo.",
       },
       {
         icon: DoorOpen,
@@ -192,7 +192,7 @@ const bloques: Bloque[] = [
       {
         icon: Smartphone,
         title: "Panel para tus barberos, desde el celu",
-        desc: "Sin bajar nada: entran con su usuario y ven su agenda, cuánto llevan ganado hoy, bloquean el almuerzo y cobran en 2 toques. No ven la plata del negocio.",
+        desc: "Sin bajar nada: entran con su usuario y ven su agenda, cuánto llevan ganado hoy, bloquean el almuerzo y cobran en 2 toques. No ven la caja ni los sueldos.",
       },
       {
         icon: LayoutGrid,
@@ -201,7 +201,7 @@ const bloques: Bloque[] = [
       },
       {
         icon: ClipboardCheck,
-        title: "Nada se te escapa",
+        title: "Ves los cortes raros",
         desc: "El sistema marca los cortes raros (sin barbero, sin cobrar, en $0) y queda registrado quién cambió cada turno y cuándo.",
       },
     ],

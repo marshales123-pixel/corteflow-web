@@ -13,10 +13,9 @@
   --borde-2: rgba(255, 244, 232, 0.16); /* borde marcado */
   --filo: #f7f3ee;        /* texto principal (blanco cálido) */
   --humo: #a79f97;        /* texto secundario */
-  /* Texto terciario. El Brand Book v1.0 dice #6f6862, pero da 3,5:1 sobre grafito
-     (no pasa el mínimo de 4,5:1). Se aclaró lo justo para pasar en todas las
-     superficies (5,0:1 sobre grafito, 4,7:1 sobre grafito-2) sin cambiar el tono. */
-  --humo-2: #8a827b;
+  /* Texto terciario (valor del Brand Book). NO usar para texto de lectura: da
+     3,5:1 sobre grafito (pide 4,5:1). Para descripciones, usar --humo. */
+  --humo-2: #6f6862;
   --ign-1: #ef4444;       /* inicio gradiente */
   --ign-2: #f97316;       /* fin gradiente */
   --flama: #f45c24;       /* naranja plano sólido — íconos, bordes, highlights, botones */
@@ -111,7 +110,8 @@ h6 {
 .faq summary::-webkit-details-marker {
   display: none;
 }
-.faq details[open] .faq-mas {
+.faq details[open] .faq-mas,
+details.faq[open] .faq-mas {
   transform: rotate(45deg);
 }
 

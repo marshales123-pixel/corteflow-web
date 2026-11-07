@@ -14,4 +14,3 @@ export const INSTAGRAM_URL = "https://instagram.com/corteflow.ar";
 
 /** The Bulldog: la barbería donde nació y se usa CorteFlow todos los días. */
 export const BULLDOG_URL = "https://thebulldogbarbershop.com";
-export const BULLDOG_RESERVAR_URL = "https://thebulldogbarbershop.com/reservar";
